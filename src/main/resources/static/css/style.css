@@ -1,4 +1,4 @@
- /* ver 1.9 */
+  /* ver 2.0 */
   /* 모든 태그에 적용 */
   *{
      font-family: Malgun Gothic; 
@@ -40,7 +40,7 @@
   }
   
   /* 화면 상단 메뉴 세로 구분선
-     <span class='top_menu_sep'> </span> */
+     <span class='top_menu_sep'>&nbsp;</span> */
   .top_menu_sep { 
     background: url('/css/images/gray.jpg') center center no-repeat;
     background-size: 1px;
@@ -95,7 +95,7 @@
 
   .aside_left {
     float: left;
-    font-size: 0.9em;
+    font-size: 1.3em;
   }
   
   /** 본래의 A 태그의 크기를 제거하고 부모의 가변 크기를 사용 */
@@ -434,3 +434,20 @@
     padding-top: 0px;
     padding-left: 20px; 
   }
+
+  .cart_label {
+    width: 50%; 
+    text-align: left; 
+    float: left; 
+    font-size: 1.5em;
+  }
+  .cart_price {
+    width: 50%; 
+    text-align: right; 
+    float: left; 
+    font-size: 1.5em;
+  }
+  
+    
+  
+  
