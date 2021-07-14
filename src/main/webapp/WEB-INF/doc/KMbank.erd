@@ -194,8 +194,8 @@
                                           <constraint>
                                             <height>-1</height>
                                             <width>-1</width>
-                                            <x>846</x>
-                                            <y>474</y>
+                                            <x>832</x>
+                                            <y>477</y>
                                           </constraint>
                                           <sourceConnections>
                                             <net.java.amateras.db.visual.model.ForeignKeyModel>
@@ -475,10 +475,10 @@
                                               <columnName>per</columnName>
                                               <logicalName>이자율</logicalName>
                                               <columnType class="net.java.amateras.db.dialect.ColumnType">
-                                                <name>INTEGER</name>
-                                                <logicalName>Integer</logicalName>
+                                                <name>NUMBER</name>
+                                                <logicalName>Numeric</logicalName>
                                                 <supportSize>true</supportSize>
-                                                <type>4</type>
+                                                <type>2</type>
                                               </columnType>
                                               <size>10</size>
                                               <notNull>true</notNull>
@@ -1550,7 +1550,7 @@
   </children>
   <dommains/>
   <dialectName>Oracle</dialectName>
-  <logicalMode>false</logicalMode>
+  <logicalMode>true</logicalMode>
   <jarFile>C:\ai8\ojdbc8.jar</jarFile>
   <jdbcDriver>oracle.jdbc.driver.OracleDriver</jdbcDriver>
   <jdbcUrl>jdbc:oracle:thin:@localhost:1521:XE</jdbcUrl>
