@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.categrp.CategrpDAOInter">
+   <!-- 생성 -->
+  <insert id="create" parameterType="dev.mvc.categrp.CategrpVO">
+    INSERT INTO categrp(categrpno, name, seqno, visible, rdate)
+    VALUES(categrp_seq.nextval, #{name}, #{seqno}, #{visible}, sysdate)
+  </insert>
+  
+  <!-- 등록 순서별 목록 -->
+  <select id="list_categrpno_asc" resultType="dev.mvc.categrp.CategrpVO">
+    SELECT categrpno, name, seqno, visible, rdate
+    FROM categrp
+    ORDER BY categrpno ASC
+  </select>
+  
+  <!-- 출력 순서별 목록 -->
+  <select id="list_seqno_asc" resultType="dev.mvc.categrp.CategrpVO">
+    SELECT categrpno, name, seqno, visible, rdate
+    FROM categrp
+    ORDER BY seqno ASC
+  </select>
+  
+  <!-- 조회 -->
+  <select id="read" resultType="dev.mvc.categrp.CategrpVO" parameterType="int">
+    SELECT categrpno, name, seqno, visible, rdate
+    FROM categrp
+    WHERE categrpno = #{categrpno}
+  </select>
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="dev.mvc.categrp.CategrpVO">
+    UPDATE categrp
+    SET name=#{name}, seqno=#{seqno}, visible=#{visible}
+    WHERE categrpno = #{categrpno}
+  </update>
+  
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM categrp
+    WHERE categrpno=#{categrpno}
+  </delete>
+  
+  <!-- 우선순위 상향 -->
+  <update id="update_seqno_up" parameterType="int">
+    UPDATE categrp
+    SET seqno = seqno - 1
+    WHERE categrpno=#{categrpno}
+  </update>
+  
+  <!-- 우선순위 하향 -->
+  <update id="update_seqno_down" parameterType="int">
+    UPDATE categrp
+    SET seqno = seqno + 1
+    WHERE categrpno=#{categrpno}
+  </update>
+  
+  <!-- visible 수정 -->
+  <update id="update_visible" parameterType="dev.mvc.categrp.CategrpVO">
+    UPDATE categrp
+    SET visible=#{visible}
+    WHERE categrpno = #{categrpno}
+  </update>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.consite.ConnsiteDAOInter">
+  <!-- 생성 -->
+  <insert id="create" parameterType="dev.mvc.connsite.ConnsiteVO">
+    INSERT INTO site(siteno, sitename, surl, sdate)
+    VALUES(site_seq.nextval, #{sitename}, #{surl}, sysdate)
+  </insert>
+  
+  <!-- 등록 순서별 조회 -->
+  <select id="list_siteno_asc" resultType="dev.mvc.connsite.ConnsiteVO">
+    SELECT siteno, sitename, surl, sdate
+    FROM site
+    ORDER BY siteno ASC
+  </select>
+  
+  <!-- 조회 -->
+  <select id="read" resultType="dev.mvc.connsite.ConnsiteVO" parameterType="int">
+    SELECT siteno, sitename, surl, sdate
+    FROM site
+    WHERE siteno=#{siteno}
+  </select>
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="dev.mvc.connsite.ConnsiteVO">
+    UPDATE site
+    SET sitename=#{sitename}, surl=#{surl}
+    WHERE siteno=#{siteno}
+  </update>
+  
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM site
+    WHERE siteno=#{siteno}
+  </delete>
+</mapper>

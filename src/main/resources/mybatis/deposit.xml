@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.deposit.DepositDAOInter">
+  <!-- 등록 -->
+  <insert id="create" parameterType="dev.mvc.deposit.DepositVO">
+    INSERT INTO deposit(depositno, adminno, prodno, bank, dname, area, per, drate)
+    VALUES (deposit_seq.nextval, #{adminno}, #{prodno}, #{bank}, #{dname}, #{area}, #{per}, sysdate)
+  </insert>
+  
+  <!-- 조회 -->
+  <select id="read" resultType="dev.mvc.deposit.DepositVO" parameterType="int">
+    SELECT depositno, adminno, prodno, bank, dname, area, per, drate
+    FROM deposit
+    WHERE depositno=#{depositno}
+  </select>
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="dev.mvc.deposit.DepositVO">
+    UPDATE deposit
+    SET bank=#{bank}, dname=#{dname}, area=#{area}, per=#{per}
+    WHERE depositno=#{depositno}
+  </update>
+  
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM deposit
+    WHERE depositno=#{depositno}
+  </delete>
+</mapper>

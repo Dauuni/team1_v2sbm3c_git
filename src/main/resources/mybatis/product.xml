@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.product.ProductDAOInter">
+  <!-- 생성 -->
+  <insert id="create" parameterType="dev.mvc.product.ProductVO">
+    INSERT INTO product(prodno, categrpno, prodname, seqno, pdate)
+    VALUES(product_seq.nextval, #{categrpno}, #{prodname}, #{seqno}, sysdate)
+  </insert>
+  
+  <!-- 등록 순서별 목록 -->
+  <select id="list_productno_asc" resultType="dev.mvc.product.ProductVO">
+    SELECT prodno, categrpno, prodname, seqno, pdate
+    FROM product
+    ORDER BY prodno ASC
+  </select>
+  
+  <!-- 출력 순서별 목록 -->
+  <select id="list_seqno_asc" resultType="dev.mvc.product.ProductVO">
+    SELECT prodno, categrpno, prodname, seqno, pdate
+    FROM product
+    ORDER BY seqno ASC
+  </select>
+  
+  <!-- 조회 -->
+  <select id="read" resultType="dev.mvc.product.ProductVO" parameterType="int">
+    SELECT prodno, categrpno, prodname, seqno, pdate
+    FROM product
+    WHERE prodno = #{prodno}
+  </select>
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="dev.mvc.product.ProductVO">
+    UPDATE product
+    SET prodname=#{prodname}, seqno=#{seqno}
+    WHERE prodno=#{prodno}
+  </update>
+  
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+     DELETE FROM product
+    WHERE prodno=#{prodno}
+  </delete>
+  
+  <!-- 우선순위 상향 -->
+  <update id="update_seqno_up" parameterType="int">
+    UPDATE product
+    SET seqno=seqno-1
+    WHERE prodno=#{prodno}
+  </update>
+  
+  <!-- 우선순위 하향 -->
+  <update id="update_seqno_down" parameterType="int">
+    UPDATE product
+    SET seqno=seqno+1
+    WHERE prodno=#{prodno}
+  </update>
+</mapper>
