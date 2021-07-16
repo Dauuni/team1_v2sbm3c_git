@@ -5,23 +5,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev.mvc.notice.NoticeDAOInter">
-  <!-- 등록 -->
+  <!-- 등록 ★★★관리자 변경★★★ -->
   <insert id="create" parameterType="dev.mvc.notice.NoticeVO">
-    INSERT INTO notice(noticeno, categrpno, memberno, title, content, file1, file1saved, thumb1, size1, cnt, replycnt, rdate)
-    VALUES(notice_seq.nextval, #{categrpno}, #{memberno}, #{title}, #{content}, #{file1}, #{file1saved}, #{thumb1}, #{size1}, #{cnt}, #{replycnt}, sysdate)
+    INSERT INTO notice(noticeno, memberno, title, content, file1, file1saved, thumb1, size1, cnt, replycnt, rdate)
+    VALUES(notice_seq.nextval, 1, #{title}, #{content}, #{file1}, #{file1saved}, #{thumb1}, #{size1}, #{cnt}, #{replycnt}, sysdate)
   </insert>
   
-  <!-- 카테고리 그룹별 조회 -->
-  <select id="list_by_categrpno" parameterType="int" resultType="dev.mvc.notice.NoticeVO">
-    SELECT noticeno, categrpno, memberno, title, content, file1, file1saved, thumb1, size1, cnt, replycnt, rdate
+  <!-- 전체 목록 -->
+  <select id="notice_list" resultType="dev.mvc.notice.NoticeVO">
+    SELECT noticeno, memberno, title, content, file1, file1saved, thumb1, size1, cnt, replycnt, rdate
     FROM notice
-    WHERE categrpno=#{categrpno}
     ORDER BY noticeno DESC
   </select>
   
   <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.notice.NoticeVO" parameterType="int">
-    SELECT noticeno, categrpno, memberno, title, content, file1, file1saved, thumb1, size1, cnt, replycnt, rdate
+    SELECT noticeno, memberno, title, content, file1, file1saved, thumb1, size1, cnt, replycnt, rdate
     FROM notice
     WHERE noticeno=#{noticeno}
   </select>

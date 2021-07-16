@@ -4,23 +4,23 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="dev.mvc.consite.ConnsiteDAOInter">
+<mapper namespace="dev.mvc.connsite.ConnsiteDAOInter">
   <!-- 생성 -->
   <insert id="create" parameterType="dev.mvc.connsite.ConnsiteVO">
-    INSERT INTO site(siteno, sitename, surl, sdate)
-    VALUES(site_seq.nextval, #{sitename}, #{surl}, sysdate)
+    INSERT INTO site(siteno, img, imgsaved, thumb, imgsize, sitename, surl, cnt)
+    VALUES(site_seq.nextval, #{img}, #{imgsaved}, #{thumb}, #{imgsize}, #{sitename}, #{surl}, #{cnt})
   </insert>
   
   <!-- 등록 순서별 조회 -->
-  <select id="list_siteno_asc" resultType="dev.mvc.connsite.ConnsiteVO">
-    SELECT siteno, sitename, surl, sdate
+  <select id="site_list" resultType="dev.mvc.connsite.ConnsiteVO">
+    SELECT siteno, img, imgsaved, thumb, imgsize, sitename, surl, cnt
     FROM site
     ORDER BY siteno ASC
   </select>
   
-  <!-- 조회 -->
+  <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.connsite.ConnsiteVO" parameterType="int">
-    SELECT siteno, sitename, surl, sdate
+    SELECT siteno, img, imgsaved, thumb, imgsize, sitename, surl, cnt
     FROM site
     WHERE siteno=#{siteno}
   </select>
@@ -28,7 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 수정 -->
   <update id="update" parameterType="dev.mvc.connsite.ConnsiteVO">
     UPDATE site
-    SET sitename=#{sitename}, surl=#{surl}
+    SET img=#{img}, imgsaved=#{imgsaved}, thumb=#{thumb}, imgsize=#{imgsize},
+          sitename=#{sitename}, surl=#{surl}
     WHERE siteno=#{siteno}
   </update>
   
