@@ -11,10 +11,10 @@ public interface ConnsiteProcInter {
   public int create(ConnsiteVO connsiteVO);
   
   /**
-   * 등록 순서별 목록
+   * 전체 목록
    * @return
    */
-  public List<ConnsiteVO> list_siteno_asc();
+  public List<ConnsiteVO> site_list();
   
   /**
    * 조회
@@ -23,7 +23,7 @@ public interface ConnsiteProcInter {
    */
   public ConnsiteVO read(int siteno);
   
-  /** 
+  /**
    * 수정
    * @param connsiteVO
    * @return

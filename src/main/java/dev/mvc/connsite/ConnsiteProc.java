@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import dev.mvc.tool.Tool;
+
 @Component("dev.mvc.connsite.ConnsiteProc")
 public class ConnsiteProc implements ConnsiteProcInter {
   @Autowired
@@ -18,25 +20,32 @@ public class ConnsiteProc implements ConnsiteProcInter {
   }
 
   @Override
-  public List<ConnsiteVO> list_siteno_asc() {
+  public List<ConnsiteVO> site_list() {
     List<ConnsiteVO> list = null;
-    list = this.connsiteDAO.list_siteno_asc();
+    list = this.connsiteDAO.site_list();
     
     return list;
   }
-
+  
   @Override
   public ConnsiteVO read(int siteno) {
-    ConnsiteVO connsiteVO = null;
-    connsiteVO = this.connsiteDAO.read(siteno);
+    ConnsiteVO connsiteVO = this.connsiteDAO.read(siteno);
+    
+    String sitename = connsiteVO.getSitename();
+    String surl = connsiteVO.getSurl();
+    
+    sitename = Tool.convertChar(sitename);
+    connsiteVO.setSitename(sitename);
+    
+    long imgsize = connsiteVO.getImgsize();
+    connsiteVO.setSize1_label(Tool.unit(imgsize));
     
     return connsiteVO;
   }
-
+  
   @Override
   public int update(ConnsiteVO connsiteVO) {
-    int cnt = 0;
-    cnt = this.connsiteDAO.update(connsiteVO);
+    int cnt = this.connsiteDAO.update(connsiteVO);
     
     return cnt;
   }

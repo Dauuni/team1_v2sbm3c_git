@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import dev.mvc.tool.Tool;
+
 
 @Component("dev.mvc.notice.NoticeProc")
 public class NoticeProc implements NoticeProcInter {
@@ -33,19 +35,26 @@ public class NoticeProc implements NoticeProcInter {
     
     return list;
   }
+  
+  @Override
+  public List<NoticeVO> notice_list() {
+    List<NoticeVO> list = this.noticeDAO.notice_list();
+    
+    return list;
+  }
 
   @Override
-  public NoticeVO read(int noticeno) {  //  ★★★Tool 패키지 추가 ★★★
+  public NoticeVO read(int noticeno) {
     NoticeVO noticeVO = this.noticeDAO.read(noticeno);
     
     String title = noticeVO.getTitle();
     String content = noticeVO.getContent();
     
-    // title = Tool.convertChar(title);  // 특수 문자 처리
+    title = Tool.convertChar(title);  // 특수 문자 처리
     noticeVO.setTitle(title);
     
     long size1 = noticeVO.getSize1();
-    // noticeVO.setSize1_label(Tool.unit(size1));
+    noticeVO.setSize1_label(Tool.unit(size1));
     
     return noticeVO;
   }

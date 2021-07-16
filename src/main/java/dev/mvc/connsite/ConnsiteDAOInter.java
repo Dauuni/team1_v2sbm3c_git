@@ -2,6 +2,8 @@ package dev.mvc.connsite;
 
 import java.util.List;
 
+import dev.mvc.notice.NoticeVO;
+
 public interface ConnsiteDAOInter {
   /**
    * 등록
@@ -11,10 +13,10 @@ public interface ConnsiteDAOInter {
   public int create(ConnsiteVO connsiteVO);
   
   /**
-   * 등록 순서별 목록
+   * 전체 목록
    * @return
    */
-  public List<ConnsiteVO> list_siteno_asc();
+  public List<ConnsiteVO> site_list();
   
   /**
    * 조회
@@ -23,7 +25,7 @@ public interface ConnsiteDAOInter {
    */
   public ConnsiteVO read(int siteno);
   
-  /** 
+  /**
    * 수정
    * @param connsiteVO
    * @return

@@ -18,6 +18,12 @@ public interface NoticeProcInter {
   public List<NoticeVO> list_by_categrpno(int categrpno);
   
   /**
+   * 전체 목록
+   * @return
+   */
+  public List<NoticeVO> notice_list();
+  
+  /**
    * 조회
    * @param noticeno
    * @return
