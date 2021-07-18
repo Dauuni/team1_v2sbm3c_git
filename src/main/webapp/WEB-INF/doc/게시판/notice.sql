@@ -59,3 +59,5 @@ WHERE noticeno=1;
 
 -- 레코드 갯수
 SELECT COUNT(*) FROM notice;
+
+commit;

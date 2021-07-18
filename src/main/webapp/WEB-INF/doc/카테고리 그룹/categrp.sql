@@ -2,6 +2,9 @@
 /* Table Name: 카테고리 그룹 */
 /**********************************/
 -- 테이블 생성 DDL
+
+DROP TABLE categrp CASCADE CONSTRAINTS;
+
 CREATE TABLE categrp(
 		categrpno                     		NUMBER(10)		 NOT NULL,
 		name                          		VARCHAR2(50)		 NOT NULL,
@@ -56,3 +59,5 @@ WHERE categrpno=3;
 
 -- 레코드 갯수.
 SELECT COUNT(*) FROM categrp;
+
+commit;

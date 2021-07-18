@@ -1,6 +1,8 @@
 /**********************************/
 /* Table Name: 회원 */
 /**********************************/
+DROP TABLE member CASCADE CONSTRAINTS;
+
 CREATE TABLE member(
     memberno                          NUMBER(10)     NOT NULL    PRIMARY KEY,
     id                                VARCHAR2(20)     NOT NULL,
@@ -55,7 +57,7 @@ WHERE id='user1';
 -- 회원 관리용 계정, Q/A 용 계정
 INSERT INTO member(memberno, id, passwd, mname, tel, zipcode,
                                  address, email, mdate, grade)
-VALUES (member_seq.nextval, 'admin', '1234', '관리자', '000-0000-0000', '12345',
+VALUES (member_seq.nextval, 'admin', 1234, '관리자', '000-0000-0000', '12345',
              '서울시 종로구', '관철동', sysdate, 1);
  
 INSERT INTO member(memberno, id, passwd, mname, tel, zipcode,
@@ -153,6 +155,6 @@ SELECT memberno, id, passwd, mname, tel, zipcode, address, email, mdate, grade
 FROM member
 WHERE id = 'user1';
  
- memberno id    passwd mname tel           zipcode address email mdate  grade
- --- ----- ------ ----- ------------- ------- -------- -------- --------------------- -----
-   3 user1 1234   왕눈이   000-0000-0000 12345   서울시 종로구  관철동      2019-05-24 14:51:48.0 15
+  MEMBERNO ID                   PASSWD               MNAME                          TEL            ZIPCODE   ADDRESS                      EMAIL                      MDATE                  GRADE
+---------- -------------------- ------------------------------------------------------------ ------------------------------ -------------- ----- -------------------------------------------------------------------------------- -------------------------------------------------- ----------------- ----------
+         3 user1                1234                             왕눈이                  000-0000-0000  12345 서울시 종로구                   관철동                  21/07/14 08:42:46         15
