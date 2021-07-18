@@ -7,20 +7,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.notice.NoticeDAOInter">
   <!-- 등록 ★★★관리자 변경★★★ -->
   <insert id="create" parameterType="dev.mvc.notice.NoticeVO">
-    INSERT INTO notice(noticeno, memberno, title, content, file1, file1saved, thumb1, size1, cnt, replycnt, rdate)
-    VALUES(notice_seq.nextval, 1, #{title}, #{content}, #{file1}, #{file1saved}, #{thumb1}, #{size1}, #{cnt}, #{replycnt}, sysdate)
+    INSERT INTO notice(noticeno, memberno, title, content, cnt, replycnt, rdate)
+    VALUES(notice_seq.nextval, 1, #{title}, #{content}, #{cnt}, #{replycnt}, sysdate)
   </insert>
   
   <!-- 전체 목록 -->
   <select id="notice_list" resultType="dev.mvc.notice.NoticeVO">
-    SELECT noticeno, memberno, title, content, file1, file1saved, thumb1, size1, cnt, replycnt, rdate
+    SELECT noticeno, memberno, title, content, cnt, replycnt, rdate
     FROM notice
     ORDER BY noticeno DESC
   </select>
   
   <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.notice.NoticeVO" parameterType="int">
-    SELECT noticeno, memberno, title, content, file1, file1saved, thumb1, size1, cnt, replycnt, rdate
+    SELECT noticeno, memberno, title, content, cnt, replycnt, rdate
     FROM notice
     WHERE noticeno=#{noticeno}
   </select>
@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 수정 -->
   <update id="update" parameterType="dev.mvc.notice.NoticeVO">
     UPDATE notice
-    SET title=#{title}, content=#{content}, file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1}, size1=#{size1}
+    SET title=#{title}, content=#{content}
     WHERE noticeno=#{noticeno}
   </update>
   
