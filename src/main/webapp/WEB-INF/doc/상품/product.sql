@@ -2,6 +2,8 @@
 /* Table Name: 상품 */
 /**********************************/
 -- 테이블 생성 DDL
+
+DROP TABLE product;
 CREATE TABLE product(
 		prodno                        		NUMBER(10)		 NOT NULL,
 		categrpno                     		NUMBER(10)		 NULL ,
