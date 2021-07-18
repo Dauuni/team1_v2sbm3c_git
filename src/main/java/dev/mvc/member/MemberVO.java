@@ -81,16 +81,16 @@ public class MemberVO {
   public void setZipcode(String zipcode) {
     this.zipcode = zipcode;
   }
-  public String getAddress() {
+  public String getAddress1() {
     return address;
   }
-  public void setAddress(String address) {
+  public void setAddress1(String address) {
     this.address = address;
   }
-  public String getEmail() {
+  public String getAddress2() {
     return email;
   }
-  public void setEmail(String email) {
+  public void setAddress2(String email) {
     this.email = email;
   }
   public String getMdate() {
