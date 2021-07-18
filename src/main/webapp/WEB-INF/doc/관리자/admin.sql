@@ -1,8 +1,6 @@
 /**********************************/
 /* Table Name: 관리자 */
 /**********************************/
-
-DROP TABLE admin CASCADE CONSTRAINTS;
 CREATE TABLE admin(
 		adminno                       		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
 		id                            		VARCHAR2(20)		 NOT NULL,

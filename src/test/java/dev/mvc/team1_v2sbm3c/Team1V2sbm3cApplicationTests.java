@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Team1V2sbm3cApplicationTests {
+public class Team1V2sbm3cApplicationTests {
   @Autowired
   private SqlSessionTemplate sqlSession;
   
@@ -18,5 +18,5 @@ class Team1V2sbm3cApplicationTests {
   public void testSqlSession() throws Exception{
     System.out.println(sqlSession.toString());
   }
-  
+
 }
