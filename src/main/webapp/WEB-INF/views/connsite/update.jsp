@@ -10,8 +10,8 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8"> 
-<meta name="viewport" surl="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<sitename>KM Bank</sitename>
+<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
+<title>KM Bank</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -33,7 +33,7 @@
 <jsp:include page="../menu/top.jsp" flush='false' />
  
 <DIV class='title_line'>
-  <A href="../notice/site_list.do" class='title_link'>관련사이트</A>
+  <A href="../connsite/site_list.do" class='title_link'>관련사이트</A>
    > 사이트 수정(관리자)
 </DIV>
 
