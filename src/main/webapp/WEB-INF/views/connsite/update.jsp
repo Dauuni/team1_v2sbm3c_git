@@ -84,29 +84,36 @@
         </DIV>
 
         <DIV style='text-align: left; width: 47%; float: left;'>
-          <span style='font-size: 1.5em;'>${sitename}</span>
-          <br>
+          <span style='font-size: 1.2em;'>${sitename}</span>
           <FORM name='frm' method='POST' action='./update.do' 
               enctype="multipart/form-data">
             <input type="hidden" name="siteno" value="${siteno }">
             <!-- <input type='hidden' name='now_page' value='${param.now_page }'>  -->
             <!-- <input type="hidden" name="adminno" value="1"> <%-- 관리자 개발후 변경 필요 --%>  -->
-            <br><br> 
+            <br>
             변경 이미지 선택<br>  
-            <input type='file' name='imgMF' id='imgMF' value='' placeholder="파일 선택"><br>
+            <input type='file' name='imgMF' id='imgMF' value='' placeholder="파일 선택">
             <div class="form-group">
-               <label class="control-label col-md-2">사이트명</label>
-               <div class="col-md-10">
+               <label class="control-label col-md-4" style='margin-top: 10px;'>사이트명</label>
+               <div class="col-md-8">
                  <input type='text' name='sitename' value='${sitename }' required="required" 
-                           autofocus="autofocus" class="form-control" style='width: 100%;'>
+                           autofocus="autofocus" class="form-control" style='width: 100%; margin-top: 10px;'>
                </div>
             </div>
             <div class="form-group">
-               <label class="control-label col-md-2">주소</label>
-               <div class="col-md-10">
-                 <textarea name='surl' id='surl' required="required" class="form-control" style='width: 100%;'>${surl }</textarea>
+               <label class="control-label col-md-4" style="margin-top: 10px">주소</label>
+               <div class="col-md-8">
+                 <textarea name='surl' id='surl' required="required" class="form-control" 
+                              style='width: 100%; margin-top: 10px;'>${surl }</textarea>
                </div>
             </div>
+            <div class="form-group">
+               <label class="control-label col-md-4" style="margin-top: 10px">검색어</label>
+               <div class="col-md-8">
+                 <input type='text' name='word' value="${word }" required="required" 
+                            class="form-control" style='width: 100%; margin-top: 10px;'>
+               </div>
+            </div> 
             <div style='margin-top: 20px; clear: both;'>  
               <button type="submit" class="btn btn-primary">저장</button>
               <button type="button" onclick="history.back();" class="btn btn-primary">취소</button>

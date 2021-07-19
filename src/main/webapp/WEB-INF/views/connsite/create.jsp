@@ -58,10 +58,17 @@
          <textarea type='text' name='surl' id='surl' placeholder="주소를 입력하세요." required="required" 
                       class="form-control" style='width: 100%;'></textarea>
        </div>
-    </div>    
+    </div>
+    <div class="form-group">
+       <label class="control-label col-md-2">검색어</label>
+       <div class="col-md-10">
+         <input type='text' name='word' placeholder="예상 검색어를 입력하세요." required="required" 
+                    class="form-control" style='width: 100%;'>
+       </div>
+    </div> 
     <div class="content_body_bottom">
       <button type="submit" class="btn btn-primary">등록</button>
-      <button type="button" onclick="location.href='./site_list.do'" class="btn btn-primary">목록</button>
+      <button type="button" onclick="location.href='./site_list_search_paging.do?&now_page=1'" class="btn btn-primary">목록</button>
     </div>
   
   </FORM>

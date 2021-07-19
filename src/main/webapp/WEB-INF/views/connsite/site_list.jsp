@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>KB Bank</title>
+<title>KM Bank</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -68,7 +68,7 @@
             </c:choose>
           </td>  
           <td style='vertical-align: middle;'> <!-- ★★★ 새 창으로 열리기 고민 ★★★ -->
-            <strong>${connsiteVO.sitename}</strong><a href="${connsiteVO.surl }">${connsiteVO.surl}
+            <strong>${connsiteVO.sitename}</strong><a href="${connsiteVO.surl }">${connsiteVO.surl}</a>
           </td> 
           <td style='vertical-align: middle; text-align: center;'><a href="./update.do?siteno=${siteno }">수정</a>/<a href="./delete.do?siteno=${siteno }">삭제</a></td>
         </tr>

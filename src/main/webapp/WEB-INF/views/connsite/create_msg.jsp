@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>KB Bank</title>
+<title>KM Bank</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/JavaScript"
@@ -51,10 +51,9 @@
           </c:otherwise>
         </c:choose>
         
-        <%-- <button type='button' onclick="location.href='./list_by_cateno.do?cateno=${param.cateno}'" class="btn btn-primary">목록</button> --%>
-        <button type='button' onclick="location.href='./site_list.do'" class="btn btn-primary">목록</button>
-        <%-- <button type='button' onclick="location.href='./list_by_cateno_search.do?cateno=${param.cateno}'" class="btn btn-primary">목록</button> --%>
-        <%-- <button type='button' onclick="location.href='./list_by_cateno_search_paging.do'" class="btn btn-primary">목록</button> --%>
+        <%-- <button type='button' onclick="location.href='./site_list.do'" class="btn btn-primary">목록</button>  --%>
+        <%-- <button type='button' onclick="location.href='./site_list_search.do'" class="btn btn-primary">목록</button> --%>
+        <button type='button' onclick="location.href='./site_list_search_paging.do'" class="btn btn-primary">목록</button>
       </LI>
     </UL>
   </fieldset>
