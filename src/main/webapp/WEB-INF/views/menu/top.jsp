@@ -3,9 +3,11 @@
 
 <DIV class='container_main'> 
   <%-- 화면 상단 메뉴 --%>
-  <DIV class='top_img'>
-    <DIV class='top_menu_label'>KM Bank</DIV>
-    <NAV class='top_menu'>
+  <!-- <DIV class='top_img'>  -->
+    <DIV class='top_menu_label' style="text-align: center;">
+      <A href='/index.do'><img class='top_img' src="/css/images/kmlogo.png"></A>
+    </DIV>
+    <NAV class='top_menu_km'>
       <span style='padding-left: 0.5%;'></span>
       <A class='menu_link'  href='/' >예금</A><span class='top_menu_sep'> </span> 
       <A class='menu_link'  href='/' >적금</A><span class='top_menu_sep'> </span>
@@ -20,7 +22,7 @@
         </c:otherwise>
       </c:choose>     
     </NAV>
-  </DIV>
+  <!-- </DIV>  -->
   
   <%-- 내용 --%> 
   <DIV class='content'>
