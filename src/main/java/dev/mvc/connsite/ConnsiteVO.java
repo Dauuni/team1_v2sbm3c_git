@@ -9,7 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
     thumb                                 VARCHAR2(100)  NOT NULL,
     imgsize                           NUMBER(10) NOT NULL,
     sitename                          VARCHAR2(30)     NOT NULL,
-    surl                              VARCHAR2(100)    NOT NULL,
+    surl                                CLOB     NOT NULL,
+    word                              VARCHAR2(100) NOT NULL,
     cnt                                 NUMBER(10) NOT NULL
  */
 
@@ -28,6 +29,8 @@ public class ConnsiteVO {
   private String sitename;
   /** 주소 */
   private String surl;
+  /** 검색어 */
+  private String word;
   /** 추천수 */
   private int cnt;
   
@@ -89,6 +92,12 @@ public class ConnsiteVO {
   }
   public void setThumb(String thumb) {
     this.thumb = thumb;
+  }
+  public String getWord() {
+    return word;
+  }
+  public void setWord(String word) {
+    this.word = word;
   }
   public int getCnt() {
     return cnt;

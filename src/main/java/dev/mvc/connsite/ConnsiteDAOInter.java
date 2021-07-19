@@ -1,5 +1,6 @@
 package dev.mvc.connsite;
 
+import java.util.HashMap;
 import java.util.List;
 
 import dev.mvc.notice.NoticeVO;
@@ -17,6 +18,27 @@ public interface ConnsiteDAOInter {
    * @return
    */
   public List<ConnsiteVO> site_list();
+  
+  /**
+   * 검색 목록
+   * @param hashmap
+   * @return
+   */
+  public List<ConnsiteVO> site_list_search(HashMap<String, Object> hashmap);
+  
+  /**
+   * 검색 레코드 갯수
+   * @param hashMap
+   * @return
+   */
+  public int search_count(HashMap<String, Object> hashMap);
+  
+  /**
+   * 검색 + 페이징 목록
+   * @param hashmap
+   * @return
+   */
+  public List<ConnsiteVO> site_list_search_paging(HashMap<String, Object> map);
   
   /**
    * 조회
