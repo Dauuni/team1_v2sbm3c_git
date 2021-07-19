@@ -18,17 +18,18 @@
   Spring Boot: /static/css/images/top_image_1920.jpg
   */
   .top_img {
-    width: 100%;
-    height: 100px;
-    background-image: url('/css/images/top_image_1920.jpg');
+    width: 15%;
+    height: 90px;
+    margin-bottom: 10px;
+    /* background-image: url('/css/images/top_image_1920.jpg'); */
   }
   
   .top_menu_label {
     position: relative; /* 속해 있는 부모 태그 기준 설정 */
     top: 1%;
-    left: 0.5%;
-    color: #FFFFFF;
+    text-align: center;
   }
+  
   
   .top_menu {
     position: relative; /* 부모 태그 기준, 화면 상단 기준*/
@@ -37,6 +38,14 @@
     color: white;
     padding-left: 10px; 
     height: 25px;
+  }
+  
+    .top_menu_km {
+    position: relative; /* 부모 태그 기준, 화면 상단 기준*/
+    top: 50%; 
+    background-color: rgba(200, 218, 188, 0.3);  /* 0.3: Alpha, 투명도 */  
+    padding-left: 10px; 
+    height: 60px;
   }
   
   /* 화면 상단 메뉴 세로 구분선
@@ -289,22 +298,22 @@
 
   .menu_link:link{  /* 방문전 상태 */
     text-decoration: none; /* 밑줄 삭제 */
-    color: white;
+    color: black;
   }
 
   .menu_link:visited{  /* 방문후 상태 */
     text-decoration: none; /* 밑줄 삭제 */
-    color: white;
+    color: black;
   }
 
   .menu_link:hover{  /* A 태그에 마우스가 올라간 상태 */
     text-decoration: underline; /* 밑줄 출력 */
-    color: white;
+    color: black;
   }
 
   .menu_link:active{  /* A 태그를 클릭한 상태 */
     text-decoration: underline; /* 밑줄 출력 */
-    color: white;
+    color: black;
   }
   
   .recom_link:link{  /* 방문전 상태 */
