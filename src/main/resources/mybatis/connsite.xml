@@ -7,20 +7,77 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.connsite.ConnsiteDAOInter">
   <!-- 생성 -->
   <insert id="create" parameterType="dev.mvc.connsite.ConnsiteVO">
-    INSERT INTO site(siteno, img, imgsaved, thumb, imgsize, sitename, surl, cnt)
-    VALUES(site_seq.nextval, #{img}, #{imgsaved}, #{thumb}, #{imgsize}, #{sitename}, #{surl}, #{cnt})
+    INSERT INTO site(siteno, img, imgsaved, thumb, imgsize, sitename, surl, word, cnt)
+    VALUES(site_seq.nextval, #{img}, #{imgsaved}, #{thumb}, #{imgsize}, #{sitename}, #{surl}, #{word}, #{cnt})
   </insert>
   
-  <!-- 등록 순서별 조회 -->
+  <!-- 등록 순서별 목록 -->
   <select id="site_list" resultType="dev.mvc.connsite.ConnsiteVO">
-    SELECT siteno, img, imgsaved, thumb, imgsize, sitename, surl, cnt
+    SELECT siteno, img, imgsaved, thumb, imgsize, sitename, surl, word, cnt
     FROM site
     ORDER BY siteno ASC
   </select>
   
+  <!-- 검색 목록 -->
+  <select id="site_list_search" resultType="dev.mvc.connsite.ConnsiteVO" parameterType="HashMap">
+    SELECT siteno, img, imgsaved, thumb, imgsize, sitename, surl, word, cnt
+    FROM site
+    <choose>
+      <when test="word == null or word ==''">
+      </when>
+      <otherwise>
+        WHERE sitename LIKE '%' || #{word} || '%'
+                  OR word LIKE '%' || #{word} || '%'
+                    
+      </otherwise>
+    </choose>
+    ORDER BY siteno ASC
+  </select>
+  
+  <!-- 검색 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM site
+    <choose>
+      <when test="word == null or word == ''">
+      </when>
+      <otherwise>
+        WHERE  sitename LIKE '%' || #{word} || '%'
+                   OR word LIKE '%' || #{word} || '%'
+                    
+      </otherwise>
+    </choose>
+  </select>
+  
+  <!-- 검색 목록 + 페이징 -->
+  <select id="site_list_search_paging" resultType="dev.mvc.connsite.ConnsiteVO" parameterType="HashMap">
+    SELECT siteno, img, imgsaved, thumb, imgsize, sitename, surl, word, cnt, r
+    FROM (
+                SELECT siteno, img, imgsaved, thumb, imgsize, sitename, surl, word, cnt, rownum as r
+                FROM (
+                            SELECT siteno, img, imgsaved, thumb, imgsize, sitename, surl, word, cnt
+                            FROM site
+                            <choose>
+                              <when test="word == null or word == ''">
+                              </when>
+                              <otherwise>
+                                WHERE sitename LIKE '%' || #{word} || '%'
+                                          OR word LIKE '%' || #{word} || '%'
+                              </otherwise>
+                            </choose>
+                            ORDER BY siteno ASC
+                         )
+             )
+             WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
+             
+             <!--  1 page: WHERE r >= 1 AND r <= 10; 
+                    2 page: WHERE r >= 11 AND r <= 20;
+                    3 page: WHERE r >= 21 AND r <= 30; -->
+  </select>
+  
   <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.connsite.ConnsiteVO" parameterType="int">
-    SELECT siteno, img, imgsaved, thumb, imgsize, sitename, surl, cnt
+    SELECT siteno, img, imgsaved, thumb, imgsize, sitename, surl, word, cnt
     FROM site
     WHERE siteno=#{siteno}
   </select>
@@ -29,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <update id="update" parameterType="dev.mvc.connsite.ConnsiteVO">
     UPDATE site
     SET img=#{img}, imgsaved=#{imgsaved}, thumb=#{thumb}, imgsize=#{imgsize},
-          sitename=#{sitename}, surl=#{surl}
+          sitename=#{sitename}, surl=#{surl}, word=#{word}
     WHERE siteno=#{siteno}
   </update>
   
