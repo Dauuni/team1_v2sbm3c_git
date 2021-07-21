@@ -8,19 +8,26 @@
       <A href='/index.do'><img class='top_img' src="/css/images/kmlogo.png"></A>
     </DIV>
     <NAV class='top_menu_km'>
-      <span style='padding-left: 0.5%;'></span>
-      <A class='menu_link'  href='/' >예금</A><span class='top_menu_sep'> </span> 
-      <A class='menu_link'  href='/' >적금</A><span class='top_menu_sep'> </span>
-      <A class='menu_link'  href='/notice/notice_list.do'>커뮤니티</A><span class='top_menu_sep'> </span> 
-      <A class='menu_link'  href='/connsite/site_list_search_paging.do?&now_page=1'>관련사이트</A><span class='top_menu_sep'> </span> 
+    <div style="text-align: center;">
+      <A class='menu_link_km'  href='/deposit/deposit_list_search_paging.do'><img alt="" src="/css/images/deposit.png"></A>  
+      <span style='padding-left: 5%;'></span>
+      <A class='menu_link_km'  href='/'><img alt="" src="/css/images/imoney.png"></A>  
+      <span style='padding-left: 5%;'></span>
+      <A class='menu_link_km'  href='/notice/notice_list_search_paging.do'><img alt="" src="/css/images/notice.png"></A>  
+      <span style='padding-left: 5%;'></span>
+      <A class='menu_link_km'  href='/connsite/site_list_search_paging.do'><img alt="" src="/css/images/connsite.png"></A>  
       <c:choose>
         <c:when test="${sessionScope.id == null}"> <%-- 로그인 안 한 경 우 --%>
-          <A class='menu_link'  href='/member/login.do' >Login</A><span class='top_menu_sep'> </span>
+          <span style='padding-left: 5%;'></span>
+          <A class='menu_link_km'  href='/member/login.do' ><img alt="" src="/css/images/login.png"></A>
         </c:when>
         <c:otherwise>
-          ${sessionScope.id } <A class='menu_link'  href='/member/logout.do' >Logout</A><span class='top_menu_sep'> </span>
+          ${sessionScope.id } 
+          <span style='padding-left: 5%;'></span>
+          <A class='menu_link_km'  href='/member/logout.do' ><img alt="" src="/css/images/logout.png"></A>
         </c:otherwise>
-      </c:choose>     
+      </c:choose>    
+      </div> 
     </NAV>
   <!-- </DIV>  -->
   
