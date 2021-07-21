@@ -6,7 +6,19 @@
      margin: 0px;  /* top right bottom left */
      padding: 0px;
      color: #555555;
-  }  
+  }
+  
+  .main_button IMG {
+    margin: 5px auto;
+    width: 28%;
+    height: 300px;
+  }
+  
+  .main_button IMG:hover{  /* A 태그에 마우스가 올라간 상태 */
+    background-color: rgb(200, 218, 188);
+    width: 28%;
+    height: 300px;
+  }
   
   .container_main {
     width: 90%; 
@@ -43,7 +55,7 @@
     .top_menu_km {
     position: relative; /* 부모 태그 기준, 화면 상단 기준*/
     top: 50%; 
-    background-color: rgba(200, 218, 188, 0.3);  /* 0.3: Alpha, 투명도 */  
+    background-color: rgba(200, 218, 188, 0.4);  /* 0.3: Alpha, 투명도 */  
     padding-left: 10px; 
     height: 60px;
   }
@@ -295,8 +307,14 @@
     text-decoration: underline; /* 밑줄 출력 */
     color: #7777FF;
   }
+  
+  .menu_link_km img {
+    height: 48px;
+    margin-top: 8px;
+  }
 
   .menu_link:link{  /* 방문전 상태 */
+    font-family: 
     text-decoration: none; /* 밑줄 삭제 */
     color: black;
   }
