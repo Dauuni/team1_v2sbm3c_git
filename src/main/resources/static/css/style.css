@@ -25,23 +25,49 @@
     margin: 10px auto;
   }
   
-  /* 이미지 사용시 경로 지정
-  /css/images/top_image_1920.jpg
-  Spring Boot: /static/css/images/top_image_1920.jpg
-  */
+  .top_banner {
+    margin: 0px auto;
+    width: 90%;
+    height: 100px;
+    padding-top: 20px;
+  }
+  
   .top_img {
-    width: 15%;
-    height: 90px;
-    margin-bottom: 10px;
-    /* background-image: url('/css/images/top_image_1920.jpg'); */
+    float: left;
+    width: 100px;
   }
   
-  .top_menu_label {
-    position: relative; /* 속해 있는 부모 태그 기준 설정 */
-    top: 1%;
-    text-align: center;
+  .top_img2 {
+    float: left;
+    width: 80px;
   }
   
+  .login_btn {
+    float: left;
+  }
+ 
+  .login_img {
+    margin-top: 5px;
+    margin-left: 40px;
+    width: 60px;
+  }
+  
+  .logout_img {
+    margin-top: 5px;
+    margin-left: 15px;
+    width: 80px;
+  }
+  
+  .my_img { 
+    margin-top: 5px;
+    margin-left: 30px;
+    width: 50px;
+  }
+  
+  .member_info {
+    margin-top: 5px;
+    margin-left: 20px;
+  }
   
   .top_menu {
     position: relative; /* 부모 태그 기준, 화면 상단 기준*/
@@ -54,10 +80,13 @@
   
     .top_menu_km {
     position: relative; /* 부모 태그 기준, 화면 상단 기준*/
-    top: 50%; 
-    background-color: rgba(200, 218, 188, 0.4);  /* 0.3: Alpha, 투명도 */  
-    padding-left: 10px; 
-    height: 60px;
+    float: left;
+    left: 1%;
+    margin-top: 15px;
+    background-color: rgba(0, 112, 192, 0.6);  /* 0.3: Alpha, 투명도 */
+    border-radius: 15px;
+    width: 65%;
+    height: 70px;
   }
   
   /* 화면 상단 메뉴 세로 구분선
@@ -83,12 +112,12 @@
   }
   
   .content {
-    width: 90%;
+    width: 95%;
     margin: 10px auto;
   }
   
   .content_body {
-    width: 90%;
+    width: 95%;
     margin: 10px auto;
   }
   
@@ -211,10 +240,10 @@
   }
   
   .title_line {
-    text-align: left;
     border-bottom: solid 3px #555555;
-    width: 100%;
+    width: 95%;
     margin: 20px auto;
+    text-align: left;
     font-size: 20px;    
   }
   
