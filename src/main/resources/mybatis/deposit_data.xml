@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.deposit_data.Deposit_dataDAOInter">
+  <!-- 등록 -->
+  <insert id="create" parameterType="dev.mvc.deposit_data.Deposit_dataVO">
+    INSERT INTO deposit_data(depositno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int)
+    VALUES (deposit_data_seq.nextval, #{kor_co_nm}, #{fin_prdt_nm}, #{join_way}, #{mtrt_int})
+  </insert>
+  
+   <!-- 전체 레코드 갯수 -->
+  <select id="all_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM deposit_data
+  </select>
+</mapper>

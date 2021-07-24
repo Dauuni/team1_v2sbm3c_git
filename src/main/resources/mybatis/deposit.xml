@@ -5,29 +5,64 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev.mvc.deposit.DepositDAOInter">
-  <!-- 등록 -->
-  <insert id="create" parameterType="dev.mvc.deposit.DepositVO">
-    INSERT INTO deposit(depositno, adminno, prodno, bank, dname, area, per, drate)
-    VALUES (deposit_seq.nextval, #{adminno}, #{prodno}, #{bank}, #{dname}, #{area}, #{per}, sysdate)
-  </insert>
+  <!-- 검색 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM deposit_data
+    <choose>
+      <when test="word == null or word == ''">
+      </when>
+      <otherwise>
+        WHERE  kor_co_nm LIKE '%' || #{word} || '%'
+                   OR fin_prdt_nm LIKE '%' || #{word} || '%'
+                    
+      </otherwise>
+    </choose>
+  </select>
+  
+   <!-- 검색 목록 + 페이징 -->
+  <select id="deposit_list_search_paging" resultType="dev.mvc.deposit.DepositVO" parameterType="HashMap">
+    SELECT depositno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int, r
+    FROM (
+                SELECT depositno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int, rownum as r
+                FROM (
+                            SELECT depositno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int
+                            FROM deposit_data
+                            <choose>
+                              <when test="word == null or word == ''">
+                              </when>
+                              <otherwise>
+                                WHERE kor_co_nm LIKE '%' || #{word} || '%'
+                                          OR fin_prdt_nm LIKE '%' || #{word} || '%'
+                              </otherwise>
+                            </choose>
+                            ORDER BY depositno ASC
+                         )
+             )
+             WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
+             
+             <!--  1 page: WHERE r >= 1 AND r <= 10; 
+                    2 page: WHERE r >= 11 AND r <= 20;
+                    3 page: WHERE r >= 21 AND r <= 30; -->
+  </select>
   
   <!-- 조회 -->
   <select id="read" resultType="dev.mvc.deposit.DepositVO" parameterType="int">
-    SELECT depositno, adminno, prodno, bank, dname, area, per, drate
-    FROM deposit
+    SELECT depositno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int
+    FROM deposit_data
     WHERE depositno=#{depositno}
   </select>
   
   <!-- 수정 -->
   <update id="update" parameterType="dev.mvc.deposit.DepositVO">
-    UPDATE deposit
-    SET bank=#{bank}, dname=#{dname}, area=#{area}, per=#{per}
+    UPDATE deposit_data
+    SET kor_co_nm=#{kor_co_nm}, fin_prdt_nm=#{fin_prdt_nm}, join_way=#{join_way}, mtrt_int=#{mtrt_int}
     WHERE depositno=#{depositno}
   </update>
   
   <!-- 삭제 -->
   <delete id="delete" parameterType="int">
-    DELETE FROM deposit
+    DELETE FROM deposit_data
     WHERE depositno=#{depositno}
   </delete>
 </mapper>
