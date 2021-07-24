@@ -15,7 +15,7 @@ public class ConnsiteProc implements ConnsiteProcInter {
 
   @Override
   public int create(ConnsiteVO connsiteVO) {
-    int cnt = connsiteDAO.create(connsiteVO);
+    int cnt = this.connsiteDAO.create(connsiteVO);
     
     return cnt;
   }
@@ -51,11 +51,11 @@ public class ConnsiteProc implements ConnsiteProcInter {
     List<ConnsiteVO> list = this.connsiteDAO.site_list_search_paging(map);
     
     for (ConnsiteVO connsiteVO : list) { 
-      String sitename = Tool.convertChar(connsiteVO.getSitename());
-      connsiteVO.setSitename(sitename);
+      String kor_co_nm = Tool.convertChar(connsiteVO.getKor_co_nm());
+      connsiteVO.setKor_co_nm(kor_co_nm);
       
-      String surl = Tool.convertChar(connsiteVO.getSurl());
-      connsiteVO.setSurl(surl);
+      String homp_url = Tool.convertChar(connsiteVO.getHomp_url());
+      connsiteVO.setHomp_url(homp_url);
     }
     
     return list;
@@ -144,11 +144,11 @@ public class ConnsiteProc implements ConnsiteProcInter {
   public ConnsiteVO read(int siteno) {
     ConnsiteVO connsiteVO = this.connsiteDAO.read(siteno);
     
-    String sitename = connsiteVO.getSitename();
-    String surl = connsiteVO.getSurl();
+    String kor_co_nm = connsiteVO.getKor_co_nm();
+    String homp_url = connsiteVO.getHomp_url();
     
-    sitename = Tool.convertChar(sitename);
-    connsiteVO.setSitename(sitename);
+    kor_co_nm = Tool.convertChar(kor_co_nm);
+    connsiteVO.setKor_co_nm(kor_co_nm);
     
     long imgsize = connsiteVO.getImgsize();
     connsiteVO.setSize1_label(Tool.unit(imgsize));
@@ -169,6 +169,13 @@ public class ConnsiteProc implements ConnsiteProcInter {
     cnt = this.connsiteDAO.delete(siteno);
     
     return cnt;
+  }
+
+  @Override
+  public int all_count(HashMap<String, Object> hashMap) {
+    int count = connsiteDAO.all_count(hashMap);
+    
+    return count;
   }
 
 }

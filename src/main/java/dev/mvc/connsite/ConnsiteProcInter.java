@@ -18,6 +18,13 @@ public interface ConnsiteProcInter {
   public List<ConnsiteVO> site_list();
   
   /**
+   * 전체 레코드 갯수
+   * @param hashMap
+   * @return
+   */
+  public int all_count(HashMap<String, Object> hashMap);
+  
+  /**
    * 검색 목록
    * @param hashmap
    * @return

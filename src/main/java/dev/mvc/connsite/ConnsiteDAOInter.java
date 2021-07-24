@@ -25,6 +25,13 @@ public interface ConnsiteDAOInter {
    * @return
    */
   public List<ConnsiteVO> site_list_search(HashMap<String, Object> hashmap);
+ 
+  /**
+   * 전체 레코드 갯수
+   * @param hashMap
+   * @return
+   */
+  public int all_count(HashMap<String, Object> hashMap);
   
   /**
    * 검색 레코드 갯수

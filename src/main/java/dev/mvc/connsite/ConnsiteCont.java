@@ -5,12 +5,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,11 +47,10 @@ public class ConnsiteCont {
   }
   
   /**
-   * 등록 폼 ★★★관리자번호 받기★★★
-   * http://localhost:9090/connsite/create.do
+   * 등록 폼 ★★★ 관리자 번호 받기 ★★★
    * @return
    */
-  @RequestMapping(value="/connsite/create.do", method = RequestMethod.GET)
+  @RequestMapping(value = "/connsite/create.do", method = RequestMethod.GET)
   public ModelAndView create() {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/connsite/create");
@@ -58,58 +59,39 @@ public class ConnsiteCont {
   }
   
   /**
-   * 등록 처리
-   * @param request
-   * @param connsiteVO
+   * Ajax 등록 처리
+   * @param session
+   * @param depositno
    * @return
    */
-  @RequestMapping(value="/connsite/create.do", method = RequestMethod.POST)
-  public ModelAndView create(HttpServletRequest request, ConnsiteVO connsiteVO) {
-    ModelAndView mav = new ModelAndView();
+  @RequestMapping(value="/connsite/create.do", method=RequestMethod.POST )
+  @ResponseBody
+  public String create(@RequestParam(value="kor_co_nm[]") List<String> kor_co_nm,
+                            @RequestParam(value="homp_url[]") List<String> homp_url,
+                            @RequestParam(value="cal_tel[]") List<String> cal_tel) {
+    ConnsiteVO connsiteVO = new ConnsiteVO();
     
-    // -------------------------------------------------------------------
-    // 파일 전송 코드 시작
-    // -------------------------------------------------------------------
-    String img = "";          // 원본 파일명 image
-    String imgsaved = "";  // 저장된 파일명, image
-    String thumb = "";     // preview image
+    HashMap<String, Object> map = new HashMap<String, Object>();
     
-    // 기준 경로 확인
-    String user_dir = System.getProperty("user.dir");
-    // 완성된 절대 경로, F:/ai8/ws_frame/team1_v2sbm3c_git/src/main/resources/static/connsite/storage
-    String upDir =  user_dir + "/src/main/resources/static/connsite/storage/"; 
-    // 전송 파일이 없어서도 fnamesMF 객체가 생성됨.
-    MultipartFile mf = connsiteVO.getImgMF();
+    // 전체 레코드 갯수
+    int all_count = connsiteProc.all_count(map);
     
-    img = mf.getOriginalFilename();  // 원본 파일명
-    long imgsize = mf.getSize();       // 파일 크기
+    int cnt = 0;
     
-    if (imgsize > 0) { // 파일 크기 체크
-      // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
-      imgsaved = Upload.saveFileSpring(mf, upDir); 
-      
-      if (Tool.isImage(imgsaved)) { // 이미지인지 검사
-        // thumb 이미지 생성후 파일명 리턴됨, width: 250, height: 200
-        thumb = Tool.preview(upDir, imgsaved, 250, 200); 
+    if(all_count == 0) {
+      for(int i=0; i<homp_url.size(); i++) {
+        connsiteVO.setKor_co_nm(kor_co_nm.get(i));
+        connsiteVO.setHomp_url(homp_url.get(i));
+        connsiteVO.setCal_tel(cal_tel.get(i));
+        cnt = this.connsiteProc.create(connsiteVO);
+        System.out.printf(kor_co_nm.get(i), homp_url.get(i), cal_tel.get(i));
       }
     }
     
-    connsiteVO.setImg(img);
-    connsiteVO.setImgsaved(imgsaved);
-    connsiteVO.setThumb(thumb);
-    connsiteVO.setImgsize(imgsize);
-    // -------------------------------------------------------------------
-    // 파일 전송 코드 종료
-    // -------------------------------------------------------------------
-    
-    int cnt = this.connsiteProc.create(connsiteVO);
-    
-    mav.addObject("cnt", cnt);
-    mav.addObject("url","/connsite/create_msg");
-    
-    mav.setViewName("redirect:/connsite/msg.do");
-    
-    return mav;
+    JSONObject json = new JSONObject();
+    json.put("cnt", cnt);
+
+    return json.toString();
   }
   
   /**
