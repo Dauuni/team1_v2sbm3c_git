@@ -3,8 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="siteno" value="${connsiteVO.siteno }" />
-<c:set var="sitename" value="${connsiteVO.sitename }" />
-<c:set var="surl" value="${connsiteVO.surl }" />
+<c:set var="kor_co_nm" value="${connsiteVO.kor_co_nm }" />
+<c:set var="homp_url" value="${connsiteVO.homp_url }" />
+<c:set var="cal_tel" value="${connsiteVO.cal_tel }" />
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -84,7 +85,7 @@
         </DIV>
 
         <DIV style='text-align: left; width: 47%; float: left;'>
-          <span style='font-size: 1.2em;'>${sitename}</span>
+          <span style='font-size: 1.2em;'>${kor_co_nm}</span>
           <FORM name='frm' method='POST' action='./update.do' 
               enctype="multipart/form-data">
             <input type="hidden" name="siteno" value="${siteno }">
@@ -96,21 +97,21 @@
             <div class="form-group">
                <label class="control-label col-md-4" style='margin-top: 10px;'>사이트명</label>
                <div class="col-md-8">
-                 <input type='text' name='sitename' value='${sitename }' required="required" 
+                 <input type='text' name='kor_co_nm' value='${kor_co_nm }' required="required" 
                            autofocus="autofocus" class="form-control" style='width: 100%; margin-top: 10px;'>
                </div>
             </div>
             <div class="form-group">
                <label class="control-label col-md-4" style="margin-top: 10px">주소</label>
                <div class="col-md-8">
-                 <textarea name='surl' id='surl' required="required" class="form-control" 
-                              style='width: 100%; margin-top: 10px;'>${surl }</textarea>
+                 <textarea name='homp_url' id='homp_url' required="required" class="form-control" 
+                              style='width: 100%; margin-top: 10px;'>${homp_url }</textarea>
                </div>
             </div>
             <div class="form-group">
-               <label class="control-label col-md-4" style="margin-top: 10px">검색어</label>
+               <label class="control-label col-md-4" style="margin-top: 10px">전화번호</label>
                <div class="col-md-8">
-                 <input type='text' name='word' value="${word }" required="required" 
+                 <input type='text' name='cal_tel' value="${cal_tel }" required="required" 
                             class="form-control" style='width: 100%; margin-top: 10px;'>
                </div>
             </div> 

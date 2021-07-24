@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="siteno" value="${connsiteVO.siteno }" />
-<c:set var="sitename" value="${connsiteVO.sitename }" />
+<c:set var="kor_co_nm" value="${connsiteVO.kor_co_nm }" />
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -30,7 +30,7 @@
 <jsp:include page="../menu/top.jsp" flush='false' />
  
 <DIV class='title_line'>
-  <A href="../notice/site_list.do" class='title_link'>관련사이트</A>
+  <A href="../notice/site_list_search_paging.do" class='title_link'>관련사이트</A>
    > 사이트 삭제(관리자)
 </DIV>
 
@@ -62,7 +62,7 @@
         </DIV>
 
         <DIV style='text-align: left; width: 47%; float: left;'>
-          <span style='font-size: 1.5em;'>${sitename}</span>
+          <span style='font-size: 1.5em;'>${kor_co_nm}</span>
           <br>
           <FORM name='frm' method='POST' action='./delete.do'>
               <%-- <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }"> --%>
@@ -73,7 +73,7 @@
                     
               <div class="form-group">   
                 <div class="col-md-12" style='text-align: center; margin: 10px auto;'>
-                  삭제 되는글: ${sitename }<br><br>
+                  삭제 되는 사이트: ${kor_co_nm }<br><br>
                   삭제하시겠습니까? 삭제하시면 복구 할 수 없습니다.<br><br>
                  
                   <button type = "submit" class="btn btn-info">삭제 진행</button>
