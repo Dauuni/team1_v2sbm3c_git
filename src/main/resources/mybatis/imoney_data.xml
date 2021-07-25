@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <insert id="create" parameterType="dev.mvc.imoney_data.Imoney_dataVO">
     INSERT INTO imoney_data(imoneyno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int)
-    VALUES (imoney_data_seq.nextval, #{kor_co_nm}, #[fin_prdt_nm], #[join_way], #{mtrt_int})
+    VALUES (imoney_data_seq.nextval, #{kor_co_nm}, #{fin_prdt_nm}, #{join_way}, #{mtrt_int})
   </insert>
     
    <!-- 전체 레코드 갯수 -->
