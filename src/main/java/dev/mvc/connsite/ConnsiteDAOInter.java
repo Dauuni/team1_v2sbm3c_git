@@ -55,7 +55,7 @@ public interface ConnsiteDAOInter {
   public ConnsiteVO read(int siteno);
   
   /**
-   * 수정
+   * 수정.
    * @param connsiteVO
    * @return
    */

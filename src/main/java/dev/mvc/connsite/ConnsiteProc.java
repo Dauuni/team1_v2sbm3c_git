@@ -36,7 +36,7 @@ public class ConnsiteProc implements ConnsiteProcInter {
   
   @Override
   public List<ConnsiteVO> site_list_search_paging(HashMap<String, Object> map) {
-    // 페이지에서 출력할 시작 레코드 번호 계산 , nowPage는 1부터 시작
+    // 페이지에서 출력할 시작 레코드 번호 계산 , nowPage는 1부터 시작.
     int begin_of_page = ((Integer)map.get("now_page") - 1) * Connsite.RECORD_PER_PAGE;
    
     // 시작 rownum 결정
