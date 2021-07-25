@@ -14,12 +14,12 @@ CREATE TABLE imoney_data(
 /*  etc_note                          VARCHAR2(200)    NOT NULL  */
 );
 
-COMMENT ON TABLE imoney is '적금 상품';
-COMMENT ON COLUMN imoney.imoneyno is '적금 상품 코드';
-COMMENT ON COLUMN imoney.kor_co_nm is '은행명';
-COMMENT ON COLUMN imoney.fin_prdt_nm is '적금상품명';
-COMMENT ON COLUMN imoney.join_way is '가입 방법';
-COMMENT ON COLUMN imoney.mtrt_int is '만기후 이자율';
+COMMENT ON TABLE imoney_data is '적금 상품';
+COMMENT ON COLUMN imoney_data.imoneyno is '적금 상품 코드';
+COMMENT ON COLUMN imoney_data.kor_co_nm is '은행명';
+COMMENT ON COLUMN imoney_data.fin_prdt_nm is '적금상품명';
+COMMENT ON COLUMN imoney_data.join_way is '가입 방법';
+COMMENT ON COLUMN imoney_data.mtrt_int is '만기후 이자율';
 /*COMMENT ON COLUMN imoney.etc_note is '기타 유의사항';
 */
 
