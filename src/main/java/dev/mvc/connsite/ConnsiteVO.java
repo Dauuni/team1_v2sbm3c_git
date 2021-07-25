@@ -44,6 +44,23 @@ public class ConnsiteVO {
   private String homp_url;
   /** 검색어 */
   private String cal_tel;
+  /** 지역 구분 */
+  private String area_cd;
+  /** 지역 이름 */
+  private String area_nm;
+  
+  public String getArea_cd() {
+    return area_cd;
+  }
+  public void setArea_cd(String area_cd) {
+    this.area_cd = area_cd;
+  }
+  public String getArea_nm() {
+    return area_nm;
+  }
+  public void setArea_nm(String area_nm) {
+    this.area_nm = area_nm;
+  }
   /** 추천수 */
   private int cnt;
   

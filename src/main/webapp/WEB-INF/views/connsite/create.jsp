@@ -27,6 +27,8 @@ function site_data () {
   var kor_co_nm = [];
   var homp_url = [];
   var cal_tel = [];
+  var area_cd =[];
+  var area_nm=[];
   
   $.ajax({
    url: '/fss/site_data.do', // form action
@@ -41,8 +43,10 @@ function site_data () {
         kor_co_nm.push(rdata.result.baseList[i].kor_co_nm);
         homp_url.push(rdata.result.baseList[i].homp_url);
         cal_tel.push(rdata.result.baseList[i].cal_tel);
+        area_cd.push(rdata.result.optionList[i].area_cd);
+        area_nm.push(rdata.result.optionList[i].area_nm);
       }
-         site_data_save(kor_co_nm, homp_url, cal_tel);    
+         site_data_save(kor_co_nm, homp_url, cal_tel, area_cd, area_nm);    
    },
    // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
    error: function(request, status, error) { // callback 함수
@@ -51,11 +55,13 @@ function site_data () {
   });
 }
 
-function site_data_save(kor_co_nm, homp_url, cal_tel) {
+function site_data_save(kor_co_nm, homp_url, cal_tel, area_cd, area_nm) {
   var params = {
       "kor_co_nm" : kor_co_nm,
       "homp_url" : homp_url,
-      "cal_tel" : cal_tel
+      "cal_tel" : cal_tel,
+      "area_cd" : area_cd,
+      "area_nm" : area_nm
    };
 
   // console.log(params);

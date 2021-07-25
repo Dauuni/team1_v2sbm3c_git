@@ -12,6 +12,8 @@ CREATE TABLE site(
     kor_co_nm                        VARCHAR2(100)     NOT NULL,
     homp_url                          CLOB     NOT NULL,
         cal_tel                              VARCHAR2(100) NOT NULL,
+        area_cd                        VARCHAR2(20) NOT NULL,
+        area_nm                        VARCHAR2(50) NOT NULL,
     cnt                                 NUMBER(10)
 );
 
@@ -24,6 +26,8 @@ COMMENT ON COLUMN site.imgsize is '이미지 사이즈';
 COMMENT ON COLUMN site.kor_co_nm is '사이트 이름';
 COMMENT ON COLUMN site.homp_url is '주소';
 COMMENT ON COLUMN site.cal_tel is '전화번호';
+COMMENT ON COLUMN site.area_cd is '지역구분';
+COMMENT ON COLUMN site.area_nm is '지역이름';
 COMMENT ON COLUMN site.cnt is '추천수';
 
 DROP SEQUENCE site_seq;
@@ -35,3 +39,8 @@ CREATE SEQUENCE site_seq
   MAXVALUE 9999999999  -- 최대값: 9999999999 --> NUMBER(10) 대응
   CACHE 2                        -- 2번은 메모리에서만 계산
   NOCYCLE;                      -- 다시 1부터 생성되는 것을 방지
+  
+-- 이름 지역 join
+SELECT d.kor_co_nm, s.area_nm, d.fin_prdt_nm, d.join_way, d.mtrt_int
+FROM site s, deposit_data d
+WHERE d.kor_co_nm = s.kor_co_nm;

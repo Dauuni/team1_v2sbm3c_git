@@ -68,7 +68,9 @@ public class ConnsiteCont {
   @ResponseBody
   public String create(@RequestParam(value="kor_co_nm[]") List<String> kor_co_nm,
                             @RequestParam(value="homp_url[]") List<String> homp_url,
-                            @RequestParam(value="cal_tel[]") List<String> cal_tel) {
+                            @RequestParam(value="cal_tel[]") List<String> cal_tel,
+                            @RequestParam(value="area_cd[]") List<String> area_cd,
+                            @RequestParam(value="area_nm[]") List<String> area_nm) {
     ConnsiteVO connsiteVO = new ConnsiteVO();
     
     HashMap<String, Object> map = new HashMap<String, Object>();
@@ -83,6 +85,8 @@ public class ConnsiteCont {
         connsiteVO.setKor_co_nm(kor_co_nm.get(i));
         connsiteVO.setHomp_url(homp_url.get(i));
         connsiteVO.setCal_tel(cal_tel.get(i));
+        connsiteVO.setArea_cd(area_cd.get(i));
+        connsiteVO.setArea_nm(area_nm.get(i));
         cnt = this.connsiteProc.create(connsiteVO);
         System.out.printf(kor_co_nm.get(i), homp_url.get(i), cal_tel.get(i));
       }

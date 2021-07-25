@@ -7,27 +7,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.connsite.ConnsiteDAOInter">
   <!-- 생성 -->
   <insert id="create" parameterType="dev.mvc.connsite.ConnsiteVO">
-    INSERT INTO site(siteno, kor_co_nm, homp_url, cal_tel)
-    VALUES(site_seq.nextval, #{kor_co_nm}, #{homp_url}, #{cal_tel})
+    INSERT INTO site(siteno, kor_co_nm, homp_url, cal_tel, area_cd, area_nm)
+    VALUES(site_seq.nextval, #{kor_co_nm}, #{homp_url}, #{cal_tel}, #{area_cd}, #{area_nm})
   </insert>
   
   <!-- 등록 순서별 목록 -->
   <select id="site_list" resultType="dev.mvc.connsite.ConnsiteVO">
-    SELECT siteno, img, imgsaved, thumb, imgsize, kor_co_nm, homp_url, cal_tel, cnt
+    SELECT siteno, img, imgsaved, thumb, imgsize, kor_co_nm, homp_url, cal_tel, area_cd, area_nm, cnt
     FROM site
     ORDER BY siteno ASC
   </select>
   
   <!-- 검색 목록 -->
   <select id="site_list_search" resultType="dev.mvc.connsite.ConnsiteVO" parameterType="HashMap">
-    SELECT siteno, img, imgsaved, thumb, imgsize, kor_co_nm, homp_url, cal_tel, cnt
+    SELECT siteno, img, imgsaved, thumb, imgsize, kor_co_nm, homp_url, cal_tel, ,area_cd, area_nm, cnt
     FROM site
     <choose>
       <when test="word == null or word ==''">
       </when>
       <otherwise>
-        WHERE sitename LIKE '%' || #{word} || '%'
-                  OR word LIKE '%' || #{word} || '%'
+        WHERE kor_co_nm LIKE '%' || #{word} || '%'
                     
       </otherwise>
     </choose>
@@ -48,8 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <when test="word == null or word == ''">
       </when>
       <otherwise>
-        WHERE  sitename LIKE '%' || #{word} || '%'
-                   OR word LIKE '%' || #{word} || '%'
+        WHERE  kor_co_nm LIKE '%' || #{word} || '%'
                     
       </otherwise>
     </choose>
@@ -57,18 +55,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 검색 목록 + 페이징 -->
   <select id="site_list_search_paging" resultType="dev.mvc.connsite.ConnsiteVO" parameterType="HashMap">
-    SELECT siteno, img, imgsaved, thumb, imgsize, kor_co_nm, homp_url, cal_tel, cnt, r
+    SELECT siteno, img, imgsaved, thumb, imgsize, kor_co_nm, homp_url, cal_tel, area_cd, area_nm, cnt, r
     FROM (
-                SELECT siteno, img, imgsaved, thumb, imgsize, kor_co_nm, homp_url, cal_tel, cnt, rownum as r
+                SELECT siteno, img, imgsaved, thumb, imgsize, kor_co_nm, homp_url, cal_tel, area_cd, area_nm, cnt, rownum as r
                 FROM (
-                            SELECT siteno, img, imgsaved, thumb, imgsize, kor_co_nm, homp_url, cal_tel, cnt
+                            SELECT siteno, img, imgsaved, thumb, imgsize, kor_co_nm, homp_url, cal_tel, area_cd, area_nm, cnt
                             FROM site
                             <choose>
                               <when test="word == null or word == ''">
                               </when>
                               <otherwise>
-                                WHERE sitename LIKE '%' || #{word} || '%'
-                                          OR word LIKE '%' || #{word} || '%'
+                                WHERE kor_co_nm LIKE '%' || #{word} || '%'
                               </otherwise>
                             </choose>
                             ORDER BY siteno ASC
@@ -83,7 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 일반적인 조회 -->
   <select id="read" resultType="dev.mvc.connsite.ConnsiteVO" parameterType="int">
-    SELECT siteno, img, imgsaved, thumb, imgsize, kor_co_nm, homp_url, cal_tel, cnt
+    SELECT siteno, img, imgsaved, thumb, imgsize, kor_co_nm, homp_url, cal_tel, area_cd, area_nm, cnt
     FROM site
     WHERE siteno=#{siteno}
   </select>
@@ -92,7 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <update id="update" parameterType="dev.mvc.connsite.ConnsiteVO">
     UPDATE site
     SET img=#{img}, imgsaved=#{imgsaved}, thumb=#{thumb}, imgsize=#{imgsize},
-          kor_co_nm=#{kor_co_nm}, homp_url=#{homp_url}, cal_tel=#{cal_tel}
+          kor_co_nm=#{kor_co_nm}, homp_url=#{homp_url}, cal_tel=#{cal_tel}, area_cd=#{area_cd}, area_nm=#{area_nm}
     WHERE siteno=#{siteno}
   </update>
   
