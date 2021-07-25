@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>KM BANK</title>
 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 
@@ -218,17 +218,17 @@
     </div>  
 
     <div class="form-group">
-      <label for="address1" class="col-md-2 control-label" style='font-size: 0.9em;'>주소</label>    
+      <label for="address" class="col-md-2 control-label" style='font-size: 0.9em;'>주소</label>    
       <div class="col-md-10">
-        <input type='text' class="form-control" name='address1' id='address1' 
+        <input type='text' class="form-control" name='address' id='address' 
                    value='' style='width: 80%;' placeholder="주소">
       </div>
     </div>   
 
     <div class="form-group">
-      <label for="address2" class="col-md-2 control-label" style='font-size: 0.9em;'>상세 주소</label>    
+      <label for="email" class="col-md-2 control-label" style='font-size: 0.9em;'>이메일</label>    
       <div class="col-md-10">
-        <input type='text' class="form-control" name='address2' id='address2' 
+        <input type='text' class="form-control" name='email' id='email' 
                    value='' style='width: 80%;' placeholder="상세 주소">
       </div>
     </div>   
@@ -279,7 +279,7 @@
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 $('#zipcode').val(data.zonecode); //5자리 새우편번호 사용 ★
-                $('#address1').val(fullAddr);  // 주소 ★
+                $('#address').val(fullAddr);  // 주소 ★
 
                 // iframe을 넣은 element를 안보이게 한다.
                 // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
@@ -288,7 +288,7 @@
                 // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
                 document.body.scrollTop = currentScroll;
                 
-                $('#address2').focus(); //  ★
+                $('#email').focus(); //  ★
             },
             // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
             onresize : function(size) {

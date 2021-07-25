@@ -1,53 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
+ 
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace = "dev.mvc.imoney.ImoneyDAOInter">
-  <select id="checkAREA" resultType="int" parameterType="String">
-    SELECT COUNT(area) as cnt
-    FROM imoney
-    WHERE area=#{area}
+<mapper namespace="dev.mvc.imoney.ImoneyDAOInter">
+  <!-- 검색 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM imoney_data
+    <choose>
+      <when test="word == null or word == ''">
+      </when>
+      <otherwise>
+        WHERE  kor_co_nm LIKE '%' || #{word} || '%'
+                   OR fin_prdt_nm LIKE '%' || #{word} || '%'
+                    
+      </otherwise>
+    </choose>
   </select>
-
-  <insert id="create" parameterType="dev.mvc.imoney.ImoneyVO">
-    INSERT INTO imoney(installno, prodno, bank, iname, area, per, rdate, adminno)
-    VALUES (imoney.seq.nextval,#{installno},#[prodno],#[bank], #{area}, #{per}, sysdate, #{adminno})
-  </insert>
   
-  <select id="list" resultType="dev.mvc.imoney.ImoneyVO">
-    SELECT installno, prodno, bank, iname, area, per, rdate, adminno
-    FROM imoney
-    ORDER BY installno ASC
+   <!-- 검색 목록 + 페이징 -->
+  <select id="imoney_list_search_paging" resultType="dev.mvc.imoney.ImoneyVO" parameterType="HashMap">
+    SELECT imoneyno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int, r
+    FROM (
+                SELECT imoneyno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int, rownum as r
+                FROM (
+                            SELECT imoneyno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int
+                            FROM imoney_data
+                            <choose>
+                              <when test="word == null or word == ''">
+                              </when>
+                              <otherwise>
+                                WHERE kor_co_nm LIKE '%' || #{word} || '%'
+                                          OR fin_prdt_nm LIKE '%' || #{word} || '%'
+                              </otherwise>
+                            </choose>
+                            ORDER BY imoneyno ASC
+                         )
+             )
+             WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
+             
+             <!--  1 page: WHERE r >= 1 AND r <= 10; 
+                    2 page: WHERE r >= 11 AND r <= 20;
+                    3 page: WHERE r >= 21 AND r <= 30; -->
   </select>
-
-
-  <!-- intsallno로 적금 정보 조회 -->
+  
+  <!-- 조회 -->
   <select id="read" resultType="dev.mvc.imoney.ImoneyVO" parameterType="int">
-    SELECT installno, prodno, bank, iname, area, per, rdate, adminno
-    FROM imoney
-    WHERE installno = #{installno}
-  </select>  
-
-  <!-- 이자율 로 적금 정보 조회 -->
-  <select id="readByPer" resultType="dev.mvc.imoney.ImoneyVO" parameterType="String">
-    SELECT installno, prodno, bank, iname, area, per, rdate, adminno
-    FROM imoney
-    WHERE per = #{id}
+    SELECT imoneyno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int
+    FROM imoney_data
+    WHERE imoneyno=#{imoneyno}
   </select>
-
+  
+  <!-- 수정 -->
   <update id="update" parameterType="dev.mvc.imoney.ImoneyVO">
-    UPDATE imoney
-    SET #[prodno],#[bank], #{area}, #{per}, sysdate, #{adminno}
-    WHERE installno=#{installno}
+    UPDATE imoney_data
+    SET kor_co_nm=#{kor_co_nm}, fin_prdt_nm=#{fin_prdt_nm}, join_way=#{join_way}, mtrt_int=#{mtrt_int}
+    WHERE imoneyno=#{imoneyno}
   </update>
   
+  <!-- 삭제 -->
   <delete id="delete" parameterType="int">
-    DELETE FROM imoney
-    WHERE installno=#{installno}
+    DELETE FROM imoney_data
+    WHERE imoneyno=#{imoneyno}
   </delete>
-
-
-            
-</mapper> 
-
+</mapper>

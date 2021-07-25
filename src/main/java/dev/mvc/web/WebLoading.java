@@ -9,7 +9,7 @@ import java.net.URL;
 public class WebLoading {
 	
 	public static void main(String[] args) throws Exception{
-		String Address = "http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=2280639be6ff46a7021f490d12ada3a0&topFinGrpNo=020000&pageNo=1";
+		String Address = "http://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=2280639be6ff46a7021f490d12ada3a0&topFinGrpNo=020000&pageNo=1";
 	  String method = "GET";
 		URL url = new URL(Address);
 		HttpURLConnection conn = (HttpURLConnection)url.openConnection();
