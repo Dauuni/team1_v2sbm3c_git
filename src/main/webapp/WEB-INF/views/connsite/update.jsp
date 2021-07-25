@@ -78,7 +78,7 @@
             <c:when test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
               <IMG src="/connsite/storage/${imgsaved }" style='width: 70%;'> 
             </c:when>
-            <c:otherwise> <!-- 이미지가 아닌 일반 파일 -->
+            <c:otherwise> <!-- 이미지가 아닌 일반 파일. -->
               첨부 파일: ${img}
             </c:otherwise>
           </c:choose>
