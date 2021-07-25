@@ -15,6 +15,6 @@ public interface Imoney_dataDAOInter {
    * @param hashMap
    * @return
    */
-  public int all_count2(HashMap<String, Object> hashMap);
+  public int all_count(HashMap<String, Object> hashMap);
   
 }

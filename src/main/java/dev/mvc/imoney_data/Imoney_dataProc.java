@@ -18,8 +18,8 @@ public class Imoney_dataProc implements Imoney_dataProcInter {
   }
   
   @Override
-  public int all_count2(HashMap<String, Object> hashMap) {
-    int count = imoney_dataDAO.all_count2(hashMap);
+  public int all_count(HashMap<String, Object> hashMap) {
+    int count = imoney_dataDAO.all_count(hashMap);
     
     return count;
   }

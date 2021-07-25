@@ -61,11 +61,11 @@ public class Imoney_dataCont {
     HashMap<String, Object> map = new HashMap<String, Object>();
     
     // 전체 레코드 갯수
-    int all_count2 = imoney_dataProc.all_count2(map);
+    int all_count = imoney_dataProc.all_count(map);
     
     int cnt = 0;
     
-    if(all_count2 == 0) {
+    if(all_count == 0) {
       for(int i=0; i<kor_co_nm.size(); i++) {
         imoney_dataVO.setKor_co_nm(kor_co_nm.get(i));
         imoney_dataVO.setFin_prdt_nm(fin_prdt_nm.get(i));
