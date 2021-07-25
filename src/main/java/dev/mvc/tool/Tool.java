@@ -214,8 +214,19 @@ public class Tool {
     str = str.replace(">", "&gt;");
     str = str.replace("'", "&apos;");
     str = str.replace("\"", "&quot;");
-    str = str.replace("\r\n", "<BR>");
+    str = str.replace("/", "&#x2F;");
+    str = str.replace("`", "&#x60;");
+    str = str.replace("=", "&#x3D;");
+    str = str.replace("\n", "<BR>");
     str = str.replace(" ", "&nbsp;");
+    str = str.replace("-", "&#45;");
+    str = str.replace("%", "&#37;");
+    str = str.replace("(", "&#40;");
+    str = str.replace(")", "&#41;");
+    str = str.replace("×", "&#215;");
+    str = str.replace(":", "&#58;");
+    str = str.replace("※", "&#8251;");
+    str = str.replace("i", "&#97;");
     return str;
   }
   

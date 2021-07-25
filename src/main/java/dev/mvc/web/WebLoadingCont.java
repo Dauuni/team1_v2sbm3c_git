@@ -31,6 +31,52 @@ public class WebLoadingCont {
   }
   
   /**
+   * 예금
+   * http://localhost:9091/fss/read_ajax.do
+   * json.put("data", line)
+   * @return
+   */
+  @ResponseBody
+  @RequestMapping(value = "/fss/read_deposit.do", method = RequestMethod.GET)
+  public String read_deposit() {
+    System.out.println("-> read_ajax called.");
+    String data = "";
+    try {
+      // Thread.sleep(3000);
+      
+      String Address = "http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=2280639be6ff46a7021f490d12ada3a0&topFinGrpNo=020000&pageNo=1";
+      String method = "GET";
+      URL url = new URL(Address);
+      HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+      conn.setRequestMethod(method);
+      BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+      
+//      while((line = br.readLine()) != null){
+//        System.out.println(line);
+//      }
+      data = br.readLine();
+      System.out.println(data);
+      
+      br.close();
+
+    } catch (MalformedURLException e) {
+      e.printStackTrace();
+    } catch (ProtocolException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    
+    // JSONObject json = new JSONObject();
+    // json.put("data", line);
+    
+    // return json.toString();
+    
+    return data;
+  }
+  
+  /**
+   * 적금
    * http://localhost:9090/imoney/imoney_getdata.do
    * json.put("data", line)
    * @return
@@ -89,5 +135,49 @@ public class WebLoadingCont {
 //    
 //    return mav;
 //  }
+  
+  /**
+   * 사이트
+   * http://localhost:9090/fss/site_data.do
+   * @return
+   */
+  @ResponseBody
+  @RequestMapping(value = "/fss/site_data.do", method = RequestMethod.GET)
+  public String site_data() {
+    System.out.println("-> site_data called.");
+    String data = "";
+    try {
+      // Thread.sleep(3000);
+      
+      String Address = "http://finlife.fss.or.kr/finlifeapi/companySearch.json?auth=47673d6decea5b861553d9d919dff99b&topFinGrpNo=020000&pageNo=1";
+      String method = "GET";
+      URL url = new URL(Address);
+      HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+      conn.setRequestMethod(method);
+      BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+      
+//      while((line = br.readLine()) != null){
+//        System.out.println(line);
+//      }
+      data = br.readLine();
+      System.out.println(data);
+      
+      br.close();
+
+    } catch (MalformedURLException e) {
+      e.printStackTrace();
+    } catch (ProtocolException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    
+    // JSONObject json = new JSONObject();
+    // json.put("data", line);
+    
+    // return json.toString();
+    
+    return data;
+  }
 
 }

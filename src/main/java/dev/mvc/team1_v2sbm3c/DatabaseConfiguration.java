@@ -26,6 +26,7 @@ import com.zaxxer.hikari.HikariDataSource;
                                          "dev.mvc.member",
                                          "dev.mvc.notice",
                                          "dev.mvc.product",
+                                         "dev.mvc.dcompare",
                                          "dev.mvc.tool",
                                          "dev.mvc.deposit_data",
                                          "dev.mvc.imoney_data"})

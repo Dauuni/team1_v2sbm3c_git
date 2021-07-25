@@ -30,7 +30,7 @@ function deposit_data () {
   var mtrt_int = [];
   
   $.ajax({
-   url: '/fss/read_ajax.do', // form action
+   url: '/fss/read_deposit.do', // form action
    type: 'get',  // form method, get
    cache: false, // 응답 결과 임시 저장 취소
    async: true,  // true: 비동기 통신
