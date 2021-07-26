@@ -15,113 +15,92 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    
+
+<style type='text/css'>
+  @font-face {
+    font-family: menu_font; 
+    src: url("/css/font/H2HDRM.TTF");
+  }
+</style>
+
 <script type="text/javascript">
 
+<%-- 체크박스 갯수 제한 --%>
 $(document).ready(function() {
    $("input[type='checkbox']").on("click", function() {
      let count2 = $("input:checked[type='checkbox']").length;
-     if(count2 > 5) {
+     if(count2 > 2) {
        $(this).prop("checked", false);
-       alert("5개까지만 선택할 수 있습니다.");
+       alert("2개까지만 선택할 수 있습니다.");
      }
    });
 });
 
-<%-- 비교하기 버튼 --%>
-function check_comp(imoneyno, mtrt_int) {
-  let count1 = $("input:checked[type='checkbox']").length;
-  if(count1 == 0) {
-    alert("1개 이상 선택해주세요.");
-  }
-
-  console.log(mtrt_int);
-  return;
-
-  // var rowData = new Array();
-  var tdArr = new Array();
-  
-  var checkbox = $("input[name=dcheck]:checked");
-  // console.log(checkbox);
-  // return;
-  
-  checkbox.each(function(i) {
-    var tr = checkbox.parent().parent().eq(i);
-    var td = tr.children();
-    // console.log(td);
-    
-    var kor_co_nm = td.eq(1).text()+",";
-    var fin_prdt_nm = td.eq(2).text()+",";
-    var join_way = td.eq(3).text()+",";
-    var mtrt_int = mtrt_int +",";
-
-    tdArr.push(kor_co_nm);
-    tdArr.push(fin_prdt_nm);
-    tdArr.push(join_way);
-    tdArr.push(mtrt_int);
-  });
-  // $("#dcompare_result").html(rowData);
-  $("#dcompare_result").html(tdArr);
-  return;
-
-  // ★★★ 여기서부터 다시 ★★★
-  console.log(dcheck);
-  var dcheck = document.getElementById("dcheck").checked;
-  console.log(dcheck);
-  
-  if(dcheck == true) {
-    var deposit = $('#imoneyno').val(imoneyno);
-    // console.log(deposit);
-    
-    dcompare(imoneyno);
-  } else {
-    alert("코드 오류 발생");
-  }
-  
-}
-
-function dcompare(imoneyno) {
-  // var imoneyno = $('#imoneyno').val();
-  
-  var params = "";
-  params += 'imoneyno=' + imoneyno;
-  // params += '&${ _csrf.parameterName }=${ _csrf.token }';
-  console.log('-> dcompare: ' + params);
-  
-  $.ajax(
-    {
-      url: '/dcompare/create.do',
-      type: 'post',  // get, post
-      cache: false, // 응답 결과 임시 저장 취소
-      async: true,  // true: 비동기 통신
-      dataType: 'json', // 응답 형식: json, html, xml...
-      data: params,      // 데이터
-      success: function(rdata) { // 응답이 온경우
-        var str = '';
-        console.log('-> dcompare cnt: ' + rdata.cnt);
-        
-        if (rdata.cnt == 1) {
-            location.href='/dcompare/list_by_imoneyno.do' ;          
-        } else {
-          alert('다시 선택해주세요.');
-        }
-      },
-      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
-      error: function(request, status, error) { // callback 함수
-        console.log(error);
-      }
+  <%-- 비교하기 버튼 --%>
+  function check_comp(depositno) {
+    let count1 = $("input:checked[type='checkbox']").length;
+    if(count1 == 0) {
+      alert("1개 이상 선택해주세요.");
     }
-  );  //  $.ajax END
-}
 
-function per_pointer(mtrt_int) {
-  // console.log(mtrt_int)
-  document.getElementById("per_info").style.display="table-cell"
-}
+    var checkbox = $("input[name='dcheck[]']:checked");
 
-function per_pointer_out() {
-  $('#per_info').hide();
-}
+    var kor_co_nm = [];
+    var fin_prdt_nm = [];
+    var join_way = [];
+    
+    var tdArr = new Array();  // 이자율
+
+    var msg = '';
+    
+    checkbox.each(function(i) {
+      var tmpVal = $(this).val();
+      tdArr.push(tmpVal);
+      
+      var tr = checkbox.parent().parent().eq(i);
+      var td = tr.children();
+      // console.log(td);
+      
+      kor_co_nm.push(td.eq(1).text());
+      fin_prdt_nm.push(td.eq(2).text());
+      join_way.push(td.eq(3).text());
+
+      // console.log(kor_co_nm, fin_prdt_nm, join_way, tdArr);
+      // return;
+    });
+    
+    for (var i=0; i<checkbox.length; i++) {
+      msg +="<div class='dcompare'>";
+      msg += '<hr>';
+      msg += "<h2 class='bank_name'>"+kor_co_nm[i] +"</h2> ";
+      msg += "<h3>『 " + fin_prdt_nm[i] + "』</h3>";
+      msg += "<h5>- 가입 방법 : " + join_way[i] + "<br></h5>";
+      msg += "<h5 class='per_text'>【이자율】</h5><h5>" + tdArr[i]+"</h5>";
+      msg += "</div>"
+   }
+    document.getElementById("dcompare_result").style.display="inline";
+    document.getElementById("dcompare_result").innerHTML = msg;
+    document.getElementById("dcompare_result").scrollIntoView();
+  }
+
+  <%-- 돋보기에 마우스 over 했을 때 행 추가 --%>
+  function per_pointer(num, mtrt_int) {
+    var row_index = num.parentElement.parentElement.rowIndex;
+    const table = document.getElementById('data_table');
+    const newRow = table.insertRow(row_index+1);
+    const newCol = newRow.insertCell(0);
+    newCol.colSpan=6;
+    newRow.style.cssText = 'text-align:right;';
+  
+    newCol.innerHTML = "<td>"+mtrt_int+"</td>";
+  }
+  
+  <%-- 돋보기에 마우스 leave 했을 때 행 삭제  --%>
+  function per_pointer_out(num) {
+    var row_index = num.parentElement.parentElement.rowIndex;
+    const table = document.getElementById('data_table');
+    const newRow = table.deleteRow(row_index+1);
+  }
   
 </script>
  
@@ -129,121 +108,131 @@ function per_pointer_out() {
  
 <body>
 <jsp:include page="../menu/top.jsp" />
-<DIV class='title_line'>
-      적금 상품
-</DIV>
+<DIV class='content2' style="background-color: rgba(189, 215, 238, 0.2); border-radius: 20px;">
+  <DIV class='content_body'>
+    <DIV class='search_form'>
+      <DIV class='main_title'>
+        적금 상품
+      </DIV>
+      <form action=""></form>
 
-
-
-<DIV class='content_body'>
-  <form action=""></form>
-
-  <form name='frm' id='frm' method='get' action='./imoney_list_search_paging.do'>
-    <!-- <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">  -->
-<label><input type="checkbox" name="word" value="영업점">영업점</label>
-<label><input type="checkbox" name="word" value="인터넷">인터넷</label>
-<label><input type="checkbox" name="word" value="스마트폰">스마트폰</label>
-<button type = 'submit'>가입방법</button>  
-  <c:if test="${param.word.length() > 0}"></c:if>  
-  </form>
-
-
-  <form name='frm' id='frm' method='get' action='./imoney_list_search_paging.do'>
-    <!-- <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">  -->
-<label><input type="checkbox" name="word" value="서울">서울</label>
-<label><input type="checkbox" name="word" value="부산">부산</label>
-<label><input type="checkbox" name="word" value="대구">대구</label>
-<label><input type="checkbox" name="word" value="인천">인천</label>
-<label><input type="checkbox" name="word" value="광주">광주</label>
-<label><input type="checkbox" name="word" value="대전">대전</label>
-<label><input type="checkbox" name="word" value="울산">울산</label>
-<label><input type="checkbox" name="word" value="세종 ">세종</label>
-<label><input type="checkbox" name="word" value="경기">경기</label>
-<br>
-<label><input type="checkbox" name="word" value="강원">강원</label>
-<label><input type="checkbox" name="word" value="충북">충북</label>
-<label><input type="checkbox" name="word" value="충남">충남</label>
-<label><input type="checkbox" name="word" value="전북">전북</label>
-<label><input type="checkbox" name="word" value="전남">전남</label>
-<label><input type="checkbox" name="word" value="경북">경북</label>
-<label><input type="checkbox" name="word" value="경남">경남</label>
-<label><input type="checkbox" name="word" value="제주">제주</label>
-<button type = 'submit'>지역선택</button>  
-  <c:if test="${param.word.length() > 0}"></c:if>  
-  </form>
-  
-  
-  <form name='frm' id='frm' method='get' action='./imoney_list_search_paging.do'>  
-    <c:choose>
-      <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
-        <input type='text' name='word' id='word' value='${param.word }' style='width: 20%;'>
-      </c:when>
-      <c:otherwise> <%-- 검색하지 않는 경우 --%>
-        <input type='text' name='word' id='word' value='' style='width: 20%;'>
-      </c:otherwise>
-    </c:choose>
-    <button type='submit'>검색</button>
-    <c:if test="${param.word.length() > 0 }">
-      <button type='button' 
-                   onclick="location.href='./imoney_list_search_paging.do?word='">검색 취소</button>  
-                                    
-    </c:if>    
-  </form>
-  
-  <div id="dcompare_result"></div>
-  <DIV class='menu_line'></DIV>
-  
-  <table class="table table-striped" style='width: 100%;'>
-    <colgroup>
-      <col style="width: 5%;"></col>
-      <col style="width: 20%;"></col>
-      <col style="width: 30%;"></col>
-      <col style="width: 20%;"></col>
-      <col style="width: 15%;"></col>
-      <col style="width: 10%;"></col>
-    </colgroup>
+      <form name='frm' id='frm' method='get' action='./imoney_list_search_paging.do'>
+        <!-- <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">  -->
+        <label><input type="checkbox" name="word" value="영업점">영업점</label>
+        <label><input type="checkbox" name="word" value="인터넷">인터넷</label>
+        <label><input type="checkbox" name="word" value="스마트폰">스마트폰</label>
+        <button type = 'submit' class='search_btn'>가입방법</button>  
+          <c:if test="${param.word.length() > 0}"></c:if>  
+      </form>
     
-   <thead>  
-    <TR>
-      <TH class="th_bs">선택</TH>
-      <TH class="th_bs">은행명</TH>
-      <TH class="th_bs">상품명</TH>
-      <TH class="th_bs">가입방법</TH>
-      <TH class="th_bs">이자율</TH>
-      <TH class="th_bs">기타</TH>
-    </TR>
-   </thead>
-    
-    <%-- table 내용 --%>
-    <tbody>
-      <c:forEach var="imoneyVO" items="${list }">
-        <c:set var="imoneyno" value="${imoneyVO.imoneyno }" />
-        <c:set var="kor_co_nm" value="${imoneyVO.kor_co_nm }" />
-        <c:set var="fin_prdt_nm" value="${imoneyVO.fin_prdt_nm }" />
-        <c:set var="join_way" value="${imoneyVO.join_way }" />
-        <c:set var="mtrt_int" value="${imoneyVO.mtrt_int }" />
-        
-        <tr> 
-          <td class="td_bs"><input type="checkbox" name="dcheck"></td>
-          <td class="td_bs">${kor_co_nm }</td> 
-          <td class="td_bs">${fin_prdt_nm }</td> 
-          <td class="td_bs">${join_way }</td> 
-          <%-- <td class="td_bs">${mtrt_int }</td>  --%> 
-          <td class="td_bs"><a href="javascript:per_pointer('${mtrt_int}')"><img src="/images/search.png" style="width: 20px;"></a>
-          </td>
-          <td style='text-align: center;'><a href="./update.do?imoneyno=${imoneyno }">수정</a>/<a href="./delete.do?imoneyno=${imoneyno }">삭제</a></td>
-        </tr>
-         <tr>
-          <td  id='per_info' colspan="6" style='display: none; text-align: right;'>${mtrt_int }</td>
-        </tr>
-      </c:forEach>
+      <form name='frm' id='frm' method='get' action='./imoney_list_search_paging.do'>
+        <!-- <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">  -->
+        <label><input type="checkbox" name="word" value="서울">서울</label>
+        <label><input type="checkbox" name="word" value="부산">부산</label>
+        <label><input type="checkbox" name="word" value="대구">대구</label>
+        <label><input type="checkbox" name="word" value="인천">인천</label>
+        <label><input type="checkbox" name="word" value="광주">광주</label>
+        <label><input type="checkbox" name="word" value="대전">대전</label>
+        <label><input type="checkbox" name="word" value="울산">울산</label>
+        <label><input type="checkbox" name="word" value="세종 ">세종</label>
+        <label><input type="checkbox" name="word" value="경기">경기</label>
+        <br>
+        <label><input type="checkbox" name="word" value="강원">강원</label>
+        <label><input type="checkbox" name="word" value="충북">충북</label>
+        <label><input type="checkbox" name="word" value="충남">충남</label>
+        <label><input type="checkbox" name="word" value="전북">전북</label>
+        <label><input type="checkbox" name="word" value="전남">전남</label>
+        <label><input type="checkbox" name="word" value="경북">경북</label>
+        <label><input type="checkbox" name="word" value="경남">경남</label>
+        <label><input type="checkbox" name="word" value="제주">제주</label>
+        <button type = 'submit' class='search_btn'>지역선택</button>  
+          <c:if test="${param.word.length() > 0}"></c:if>  
+      </form>
+  
+      <form name='frm' id='frm' method='get' action='./imoney_list_search_paging.do'>  
+        <c:choose>
+          <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
+            <input type='text' name='word' id='word' value='${param.word }' style='width: 20%;'>
+          </c:when>
+          <c:otherwise> <%-- 검색하지 않는 경우 --%>
+            <input type='text' name='word' id='word' value='' style='width: 20%;'>
+          </c:otherwise>
+        </c:choose>
+        <button type='submit' class='search_btn'>검색</button>
+        <c:if test="${param.word.length() > 0 }">
+          <button type='button' class='search_btn'
+                       onclick="location.href='./imoney_list_search_paging.do?word='">검색 취소</button>  
+                                        
+        </c:if>    
+      </form>
+    </DIV>
+  
+    <div class="dcompare_result" id="dcompare_result" style="display: none;"></div>
+    <DIV class='menu_line'></DIV>
+  
+    <table class="table table-striped" style='width: 100%;'>
+      <colgroup>
+        <col style="width: 5%;"></col>
+        <col style="width: 20%;"></col>
+        <col style="width: 30%;"></col>
+        <col style="width: 20%;"></col>
+        <col style="width: 15%;"></col>
+        <c:choose>
+          <c:when test="${sessionScope.grade == 1 }">
+            <col style="width: 10%;"></col>
+          </c:when>
+        </c:choose>
+      </colgroup>
       
-    </tbody>
-  </table>
-  <div style="text-align: right;">
-    <input type='button' class='btn' value='비교하기' style="background-color: #C8DABC" onclick="check_comp(${imoneyno }, '${mtrt_int }')">
-  </div>
+     <thead>  
+      <TR>
+        <TH class="th_bs">선택</TH>
+        <TH class="th_bs">은행명</TH>
+        <TH class="th_bs">상품명</TH>
+        <TH class="th_bs">가입방법</TH>
+        <TH class="th_bs">이자율</TH>
+        <c:choose>
+          <c:when test="${sessionScope.grade == 1 }">
+            <TH class="th_bs">기타</TH>
+          </c:when>
+        </c:choose>
+      </TR>
+     </thead>
+      
+      <%-- table 내용 --%>
+      <tbody>
+        <c:forEach var="imoneyVO" items="${list }">
+          <c:set var="imoneyno" value="${imoneyVO.imoneyno }" />
+          <c:set var="kor_co_nm" value="${imoneyVO.kor_co_nm }" />
+          <c:set var="fin_prdt_nm" value="${imoneyVO.fin_prdt_nm }" />
+          <c:set var="join_way" value="${imoneyVO.join_way }" />
+          <c:set var="mtrt_int" value="${imoneyVO.mtrt_int }" />
+          
+          <tr> 
+            <td class="td_bs"><input type="checkbox" name="dcheck[]" value='${mtrt_int }'></td>
+            <td class="td_bs">${kor_co_nm }</td> 
+            <td class="td_bs">${fin_prdt_nm }</td> 
+            <td class="td_bs">${join_way }</td> 
+            <%-- <td class="td_bs">${mtrt_int }</td>  --%> 
+            <td class="td_bs"><a onmouseover="per_pointer(this,'${mtrt_int}')" onmouseout="per_pointer_out(this)"><img src="/images/search.png" style="width: 20px;"></a>
+            </td>
+            <c:choose>
+              <c:when test="${sessionScope.grade == 1 }">
+                <td style='text-align: center;'><a href="./update.do?depositno=${depositno }">수정</a>/<a href="./delete.do?depositno=${depositno }">삭제</a></td>
+              </c:when>
+            </c:choose>
+          </tr>
+        </c:forEach>
+        
+      </tbody>
+    </table>
+    <div style="float: right;">
+      <button class='deposit_btn' type='button' onclick="check_comp(${imoneyno })">
+        적금상품<br>비교하기
+      </button>
+    </div>
   <DIV class='bottom_menu'>${paging }</DIV>
+</DIV>
 </DIV>
 
  

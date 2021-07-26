@@ -16,26 +16,42 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     
 </head>
-<body>
+
+<script type="text/javascript">
+var imgArray=new Array(); 
+  imgArray[0]="/images/main_img1.png"; 
+  imgArray[1]="/images/main_img2.png"; 
+  imgArray[2]="/images/main_img3.png"; 
+  imgArray[3]="/images/main_img4.png"; 
+
+function showImage(){ 
+  var imgNum=Math.round(Math.random()*3); 
+  var objImg=document.getElementById("introimg"); 
+  objImg.src=imgArray[imgNum]; 
+  setTimeout(showImage,3000); 
+}
+
+function link() {
+  var img = document.getElementById("introimg").src;
+  
+  if(img == "http://localhost:9090/images/main_img1.png") {
+    location.href="./deposit/deposit_list_search_paging.do";
+  } else if (img == "http://localhost:9090/images/main_img2.png") {
+    location.href="./imoney/imoney_list_search_paging.do";
+  } else if (img == "http://localhost:9090/images/main_img3.png") {
+    location.href="./notice/notice_list_search_paging.do";
+  } else if (img == "http://localhost:9090/images/main_img4.png") {
+    location.href="http://ncov.mohw.go.kr/";
+  }
+}
+
+</script>
+
+<body onload="showImage()">
 <jsp:include page="./menu/top.jsp" flush='false' />
-  
-  <div style="text-align: center;">
-    <DIV class='main_button' style='width: 100%;'>
-      <%-- /static/images/resort01.jpg --%>
-      <a href='/deposit/deposit_list_search_paging.do'><IMG src='/images/main1.png' style="margin-right: 50px;"></a>
-      <a href='/notice/notice_list_search_paging.do'><IMG src='/images/main2.png'></a>
-    </DIV>
-  </div>
-  
-  <DIV style='margin: 0px auto; width: 90%;'>
-    <DIV style='float: left; width: 50%;'>
-     </DIV>
-     <DIV style='float: left; width: 50%;'>
-    </DIV>  
-  </DIV>
- 
-  <DIV style='width: 94.8%; margin: 0px auto;'>
-  </DIV>  
+<DIV style="margin: auto;">
+    <img class="introimg" id="introimg" onclick="link()" >
+</DIV>
  
 <jsp:include page="./menu/bottom.jsp" flush='false' />
  

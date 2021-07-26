@@ -45,21 +45,18 @@ $(document).ready(function(){
       </DIV>
     
       <DIV class='banner3'>
-        <span style='padding-left: 5%;'></span>
-        <A class='login_btn'  href='/index.do'><img class='my_img' alt="" src="/css/images/My.png"></A>
-        <c:choose>
-            <c:when test="${sessionScope.grade == 1 }">
-            <img class='admin' alt="" src="/css/images/admin.png">
-            </c:when>
-          </c:choose>
         <A class='login_btn'  href='/member/logout.do' ><img class='logout_img' alt="" src="/css/images/logout_btn.png"></A>
+        <c:choose>
+          <c:when test="${sessionScope.grade == 1 }">
+          <img class='admin' alt="" src="/css/images/admin.png">
+          </c:when>
+        </c:choose>
+        <A class='login_btn'  href='/member/read.do?memberno=${sessionScope.memberno }'><img class='my_img' alt="" src="/css/images/My.png"></A>
         <nav class="board" id="board" style="visibility:hidden;">
-          <A class='admin_menu'  href='/deposit/deposit_list_search_paging.do'>회원 목록</A>  
+          <span style='padding-left: 5%;'></span>
+          <A class='admin_menu'  href='/member/list.do'>회원 목록</A> 
           <span style='padding-left: 5%;'></span>
           <A class='admin_menu'  href='/data/create.do'>데이터 수집</A>  
-          <br></br>
-          <A class='admin_menu'  href='/idata/create.do'>적금 데이터 수집</A>  
-          
         </nav>
       </DIV>
     </DIV>
@@ -87,7 +84,6 @@ $(document).ready(function(){
         </DIV>
         
         <DIV class='banner3'>
-          <span style='padding-left: 5%;'></span> 
           <A class='login_btn'  href='/member/login.do' ><img class='login_img' alt="" src="/css/images/login_btn.png"></A>
         </DIV>
       </DIV>
