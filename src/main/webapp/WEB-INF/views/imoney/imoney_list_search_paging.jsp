@@ -21,9 +21,9 @@
 $(document).ready(function() {
    $("input[type='checkbox']").on("click", function() {
      let count2 = $("input:checked[type='checkbox']").length;
-     if(count2 > 2) {
+     if(count2 > 5) {
        $(this).prop("checked", false);
-       alert("2개까지만 선택할 수 있습니다.");
+       alert("5개까지만 선택할 수 있습니다.");
      }
    });
 });
@@ -130,12 +130,50 @@ function per_pointer_out() {
 <body>
 <jsp:include page="../menu/top.jsp" />
 <DIV class='title_line'>
-      예금 상품
+      적금 상품
 </DIV>
 
+
+
 <DIV class='content_body'>
+  <form action=""></form>
+
   <form name='frm' id='frm' method='get' action='./imoney_list_search_paging.do'>
     <!-- <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">  -->
+<label><input type="checkbox" name="word" value="영업점">영업점</label>
+<label><input type="checkbox" name="word" value="인터넷">인터넷</label>
+<label><input type="checkbox" name="word" value="스마트폰">스마트폰</label>
+<button type = 'submit'>가입방법</button>  
+  <c:if test="${param.word.length() > 0}"></c:if>  
+  </form>
+
+
+  <form name='frm' id='frm' method='get' action='./imoney_list_search_paging.do'>
+    <!-- <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">  -->
+<label><input type="checkbox" name="word" value="서울">서울</label>
+<label><input type="checkbox" name="word" value="부산">부산</label>
+<label><input type="checkbox" name="word" value="대구">대구</label>
+<label><input type="checkbox" name="word" value="인천">인천</label>
+<label><input type="checkbox" name="word" value="광주">광주</label>
+<label><input type="checkbox" name="word" value="대전">대전</label>
+<label><input type="checkbox" name="word" value="울산">울산</label>
+<label><input type="checkbox" name="word" value="세종 ">세종</label>
+<label><input type="checkbox" name="word" value="경기">경기</label>
+<br>
+<label><input type="checkbox" name="word" value="강원">강원</label>
+<label><input type="checkbox" name="word" value="충북">충북</label>
+<label><input type="checkbox" name="word" value="충남">충남</label>
+<label><input type="checkbox" name="word" value="전북">전북</label>
+<label><input type="checkbox" name="word" value="전남">전남</label>
+<label><input type="checkbox" name="word" value="경북">경북</label>
+<label><input type="checkbox" name="word" value="경남">경남</label>
+<label><input type="checkbox" name="word" value="제주">제주</label>
+<button type = 'submit'>지역선택</button>  
+  <c:if test="${param.word.length() > 0}"></c:if>  
+  </form>
+  
+  
+  <form name='frm' id='frm' method='get' action='./imoney_list_search_paging.do'>  
     <c:choose>
       <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
         <input type='text' name='word' id='word' value='${param.word }' style='width: 20%;'>
@@ -147,7 +185,8 @@ function per_pointer_out() {
     <button type='submit'>검색</button>
     <c:if test="${param.word.length() > 0 }">
       <button type='button' 
-                   onclick="location.href='./site_list_search_paging.do?word='">검색 취소</button>  
+                   onclick="location.href='./imoney_list_search_paging.do?word='">검색 취소</button>  
+                                    
     </c:if>    
   </form>
   

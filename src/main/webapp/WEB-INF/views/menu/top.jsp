@@ -36,7 +36,7 @@ $(document).ready(function(){
           <span style='padding-left: 9%;'></span>
           <A class='menu_link_km'  href='/deposit/deposit_list_search_paging.do'>예금</A>  
           <span style='padding-left: 9%;'></span>
-          <A class='menu_link_km'  href='/'>적금</A>  
+          <A class='menu_link_km'  href='/imoney/imoney_list_search_paging.do'>적금</A>  
           <span style='padding-left: 9%;'></span>
           <A class='menu_link_km'  href='/notice/notice_list_search_paging.do'>커뮤니티</A>  
           <span style='padding-left: 9%;'></span>
@@ -55,8 +55,11 @@ $(document).ready(function(){
         <A class='login_btn'  href='/member/logout.do' ><img class='logout_img' alt="" src="/css/images/logout_btn.png"></A>
         <nav class="board" id="board" style="visibility:hidden;">
           <A class='admin_menu'  href='/deposit/deposit_list_search_paging.do'>회원 목록</A>  
-          <span style='padding-left: 1%;'></span>
-          <A class='admin_menu'  href='/deposit/deposit_list_search_paging.do'>데이터 수집</A>  
+          <span style='padding-left: 5%;'></span>
+          <A class='admin_menu'  href='/data/create.do'>데이터 수집</A>  
+          <br></br>
+          <A class='admin_menu'  href='/idata/create.do'>적금 데이터 수집</A>  
+          
         </nav>
       </DIV>
     </DIV>
@@ -75,7 +78,7 @@ $(document).ready(function(){
             <span style='padding-left: 9%;'></span>
             <A class='menu_link_km'  href='/deposit/deposit_list_search_paging.do'>예금</A>  
             <span style='padding-left: 9%;'></span>
-            <A class='menu_link_km'  href='/'>적금</A>  
+            <A class='menu_link_km'  href='/imoney/imoney_list_search_paging.do'>적금</A>  
             <span style='padding-left: 9%;'></span>
             <A class='menu_link_km'  href='/notice/notice_list_search_paging.do'>커뮤니티</A>  
             <span style='padding-left: 9%;'></span>

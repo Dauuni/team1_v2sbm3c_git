@@ -15,6 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <otherwise>
         WHERE  kor_co_nm LIKE '%' || #{word} || '%'
                    OR fin_prdt_nm LIKE '%' || #{word} || '%'
+                   OR join_way LIKE '%' || #{word} || '%'
+                   <!--OR area_nm LIKE '%' || #{word} || '%' -->
                     
       </otherwise>
     </choose>
@@ -22,11 +24,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
    <!-- 검색 목록 + 페이징 -->
   <select id="imoney_list_search_paging" resultType="dev.mvc.imoney.ImoneyVO" parameterType="HashMap">
-    SELECT imoneyno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int, r
+    SELECT imoneyno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int <!-- area_nm -->
     FROM (
-                SELECT imoneyno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int, rownum as r
+                SELECT imoneyno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int, <!-- area_nm --> rownum as r
                 FROM (
-                            SELECT imoneyno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int
+                            SELECT imoneyno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int <!-- area_nm -->
                             FROM imoney_data
                             <choose>
                               <when test="word == null or word == ''">
@@ -34,6 +36,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                               <otherwise>
                                 WHERE kor_co_nm LIKE '%' || #{word} || '%'
                                           OR fin_prdt_nm LIKE '%' || #{word} || '%'
+                                          OR join_way LIKE '%' || #{word} || '%'
+                                          <!--OR area_nm LIKE '%' || #{word} || '%' -->
                               </otherwise>
                             </choose>
                             ORDER BY imoneyno ASC
