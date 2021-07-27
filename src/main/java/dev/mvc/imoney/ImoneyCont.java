@@ -47,6 +47,8 @@ public class ImoneyCont {
   @RequestMapping(value = "/imoney/imoney_list_search_paging.do", method = RequestMethod.GET)
   public ModelAndView deposit_list_search_paging(
       @RequestParam(value = "word", defaultValue = "") String word,
+      @RequestParam(value = "word1", defaultValue = "") String word1,
+      @RequestParam(value = "word2", defaultValue = "") String word2,
       @RequestParam(value = "now_page", defaultValue = "1") int now_page) { // ★ HttpServletRequest request {
     
     System.out.println("-> imoney_list_search_paging now_page: " + now_page);
@@ -55,6 +57,8 @@ public class ImoneyCont {
     
     HashMap<String, Object> map = new HashMap<String, Object>();
     map.put("word", word);
+    map.put("word1", word1);
+    map.put("word2", word2);
     map.put("now_page", now_page);
     
     // 검색 목록
@@ -66,7 +70,7 @@ public class ImoneyCont {
     int search_count = imoneyProc.search_count(map);
     mav.addObject("search_count", search_count);
     
-    String paging = imoneyProc.pagingBox("imoney_list_search_paging.do", search_count, now_page, word);
+    String paging = imoneyProc.pagingBox("imoney_list_search_paging.do", search_count, now_page, word, word1, word2);
     mav.addObject("paging", paging);
     
     mav.addObject("now_page", now_page);
@@ -108,7 +112,7 @@ public class ImoneyCont {
     
     mav.addObject("imoneyno", imoneyVO.getImoneyno());
     
-    mav.setViewName("redirect:/imoney/deposit_list.do");
+    mav.setViewName("redirect:/imoney/imoney_list_search_paging.do");
     
     return mav;
     
@@ -147,7 +151,7 @@ public class ImoneyCont {
     
     // mav.addObject("now_page", now_page);
     
-    mav.setViewName("redirect:/imoney/imoney_list.do");
+    mav.setViewName("redirect:/imoney/imoney_list_search_paging.do.do");
     
     return mav;
     

@@ -45,10 +45,10 @@ $(document).ready(function() {
 
     var checkbox = $("input[name='dcheck[]']:checked");
 
-    var kor_co_nm = [];
+    var banknm = [];
     var fin_prdt_nm = [];
     var join_way = [];
-    
+    var area = [];
     var tdArr = new Array();  // 이자율
 
     var msg = '';
@@ -61,18 +61,19 @@ $(document).ready(function() {
       var td = tr.children();
       // console.log(td);
       
-      kor_co_nm.push(td.eq(1).text());
+      banknm.push(td.eq(1).text());
       fin_prdt_nm.push(td.eq(2).text());
       join_way.push(td.eq(3).text());
+      area.push(td.eq(3).text());
 
-      // console.log(kor_co_nm, fin_prdt_nm, join_way, tdArr);
+      // console.log(banknm, fin_prdt_nm, join_way, tdArr);
       // return;
     });
     
     for (var i=0; i<checkbox.length; i++) {
       msg +="<div class='dcompare'>";
       msg += '<hr>';
-      msg += "<h2 class='bank_name'>"+kor_co_nm[i] +"</h2> ";
+      msg += "<h2 class='bank_name'>"+banknm[i] +"</h2> ";
       msg += "<h3>『 " + fin_prdt_nm[i] + "』</h3>";
       msg += "<h5>- 가입 방법 : " + join_way[i] + "<br></h5>";
       msg += "<h5 class='per_text'>【이자율】</h5><h5>" + tdArr[i]+"</h5>";
@@ -118,40 +119,38 @@ $(document).ready(function() {
 
       <form name='frm' id='frm' method='get' action='./imoney_list_search_paging.do'>
         <!-- <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">  -->
-        <label><input type="checkbox" name="word" value="영업점">영업점</label>
-        <label><input type="checkbox" name="word" value="인터넷">인터넷</label>
-        <label><input type="checkbox" name="word" value="스마트폰">스마트폰</label>
-        <button type = 'submit' class='search_btn'>가입방법</button>  
-          <c:if test="${param.word.length() > 0}"></c:if>  
+        <label><input type="checkbox" name="word1" id ="word1"value="영업점">영업점</label>
+        <label><input type="checkbox" name="word1" id ="word1"value="인터넷">인터넷</label>
+        <label><input type="checkbox" name="word1" id ="word1"value="스마트폰">스마트폰</label>      
+        <button type = 'submit' class='search_btn' value = '${param.word1 }'>가입방법</button>   
       </form>
     
       <form name='frm' id='frm' method='get' action='./imoney_list_search_paging.do'>
         <!-- <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">  -->
-        <label><input type="checkbox" name="word" value="서울">서울</label>
-        <label><input type="checkbox" name="word" value="부산">부산</label>
-        <label><input type="checkbox" name="word" value="대구">대구</label>
-        <label><input type="checkbox" name="word" value="인천">인천</label>
-        <label><input type="checkbox" name="word" value="광주">광주</label>
-        <label><input type="checkbox" name="word" value="대전">대전</label>
-        <label><input type="checkbox" name="word" value="울산">울산</label>
-        <label><input type="checkbox" name="word" value="세종 ">세종</label>
-        <label><input type="checkbox" name="word" value="경기">경기</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="서울">서울</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="부산">부산</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="대구">대구</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="인천">인천</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="광주">광주</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="대전">대전</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="울산">울산</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="세종">세종</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="경기">경기</label>
         <br>
-        <label><input type="checkbox" name="word" value="강원">강원</label>
-        <label><input type="checkbox" name="word" value="충북">충북</label>
-        <label><input type="checkbox" name="word" value="충남">충남</label>
-        <label><input type="checkbox" name="word" value="전북">전북</label>
-        <label><input type="checkbox" name="word" value="전남">전남</label>
-        <label><input type="checkbox" name="word" value="경북">경북</label>
-        <label><input type="checkbox" name="word" value="경남">경남</label>
-        <label><input type="checkbox" name="word" value="제주">제주</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="강원">강원</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="충북">충북</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="충남">충남</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="전북">전북</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="전남">전남</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="경북">경북</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="경남">경남</label>
+        <label><input type="checkbox" name="word2" id ="word2"value="제주">제주</label>
         <button type = 'submit' class='search_btn'>지역선택</button>  
-          <c:if test="${param.word.length() > 0}"></c:if>  
       </form>
   
       <form name='frm' id='frm' method='get' action='./imoney_list_search_paging.do'>  
         <c:choose>
-          <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
+          <c:when test="${param.word != '' }" > <%-- 검색하는 경우 --%>
             <input type='text' name='word' id='word' value='${param.word }' style='width: 20%;'>
           </c:when>
           <c:otherwise> <%-- 검색하지 않는 경우 --%>
@@ -203,14 +202,14 @@ $(document).ready(function() {
       <tbody>
         <c:forEach var="imoneyVO" items="${list }">
           <c:set var="imoneyno" value="${imoneyVO.imoneyno }" />
-          <c:set var="kor_co_nm" value="${imoneyVO.kor_co_nm }" />
+          <c:set var="banknm" value="${imoneyVO.banknm }" />
           <c:set var="fin_prdt_nm" value="${imoneyVO.fin_prdt_nm }" />
           <c:set var="join_way" value="${imoneyVO.join_way }" />
           <c:set var="mtrt_int" value="${imoneyVO.mtrt_int }" />
           
           <tr> 
             <td class="td_bs"><input type="checkbox" name="dcheck[]" value='${mtrt_int }'></td>
-            <td class="td_bs">${kor_co_nm }</td> 
+            <td class="td_bs">${banknm }</td> 
             <td class="td_bs">${fin_prdt_nm }</td> 
             <td class="td_bs">${join_way }</td> 
             <%-- <td class="td_bs">${mtrt_int }</td>  --%> 
@@ -218,7 +217,7 @@ $(document).ready(function() {
             </td>
             <c:choose>
               <c:when test="${sessionScope.grade == 1 }">
-                <td style='text-align: center;'><a href="./update.do?depositno=${depositno }">수정</a>/<a href="./delete.do?depositno=${depositno }">삭제</a></td>
+                <td style='text-align: center;'><a href="./update.do?imoneyno=${imoneyno }">수정</a>/<a href="./delete.do?imoneyno=${imoneyno }">삭제</a></td>
               </c:when>
             </c:choose>
           </tr>

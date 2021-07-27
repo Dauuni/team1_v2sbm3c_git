@@ -27,7 +27,7 @@ public interface DepositProcInter {
    * @param word 검색어
    * @return
    */
-  public String pagingBox(String list_file, int search_count, int now_page, String word);
+  public String pagingBox(String list_file, int search_count, int now_page, String word, String word1, String word2);
   
   /**
    * 조회

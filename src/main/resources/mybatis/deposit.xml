@@ -24,23 +24,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
    <!-- 검색 목록 + 페이징 -->
   <select id="deposit_list_search_paging" resultType="dev.mvc.deposit.DepositVO" parameterType="HashMap">
-    SELECT depositno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int, r
+    SELECT depositno, fin_prdt_nm, join_way, mtrt_int, r, area, banknm
     FROM (
-                SELECT depositno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int, rownum as r
+                SELECT depositno,fin_prdt_nm, join_way, mtrt_int, rownum as r, banknm, area
                 FROM (
-                            SELECT depositno, kor_co_nm, fin_prdt_nm, join_way, mtrt_int
-                            FROM deposit_data
+                            SELECT depositno, fin_prdt_nm, join_way, mtrt_int, s.kor_co_nm as banknm, s.area_nm as area
+                            FROM deposit_data d, site s
+                            WHERE (d.kor_co_nm = s.kor_co_nm)
                             <choose>
-                              <when test="word == null or word == ''">
+                              <when test="word == null or word == ''" >
                               </when>
                               <otherwise>
-                                WHERE kor_co_nm LIKE '%' || #{word} || '%'
+                                          AND (s.kor_co_nm LIKE '%' || #{word} || '%'
                                           OR fin_prdt_nm LIKE '%' || #{word} || '%'
-                                          OR join_way LIKE '%' || #{word} || '%'
-                                          <!--OR area_nm LIKE '%' || #{word} || '%' -->
+                                          OR join_way LIKE '%' || #{word} || '%')
+                                          <!--OR area_nm LIKE '%' || #{word} || '%' -->            
                               </otherwise>
                             </choose>
-                            ORDER BY depositno ASC
+                            <choose>
+                            <when test="word1 == null or word1 == '' " >
+                              </when>
+                              <otherwise>
+                                          AND (s.kor_co_nm LIKE '%' || #{word1} || '%'
+                                          OR fin_prdt_nm LIKE '%' || #{word1} || '%'
+                                          OR join_way LIKE '%' || #{word1} || '%'
+                                          OR s.area_nm LIKE '%' || #{word1} || '%')
+                                          </otherwise>                             
+                            </choose>
+                            <choose>
+                            <when test="word2 == null or word2 == '' " >
+                              </when>
+                              <otherwise>
+                                          AND (s.kor_co_nm LIKE '%' || #{word2} || '%'
+                                          OR fin_prdt_nm LIKE '%' || #{word2} || '%'
+                                          OR join_way LIKE '%' || #{word2} || '%'
+                                          OR s.area_nm LIKE '%' || #{word2} || '%') 
+                                          </otherwise>                             
+                            </choose>
+                            ORDER BY depositno ASC, siteno ASC
                          )
              )
              WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>

@@ -46,7 +46,7 @@ public class ImoneyProc  implements ImoneyProcInter{
   }
 
   @Override
-  public String pagingBox(String list_file, int search_count, int now_page, String word) {
+  public String pagingBox(String list_file, int search_count, int now_page, String word, String word1, String word2) {
     int total_page = (int)(Math.ceil((double)search_count/Imoney.RECORD_PER_PAGE));  // 전체 페이지 수 
     int total_grp = (int)(Math.ceil((double)total_page/Imoney.PAGE_PER_BLOCK));         // 전체 그룹  수
     int now_grp = (int)(Math.ceil((double)now_page/Imoney.PAGE_PER_BLOCK));         // 현재 그룹 번호
@@ -89,7 +89,7 @@ public class ImoneyProc  implements ImoneyProcInter{
     
     // 현재 그룹번호가 2이상이면 이전 그룹으로 갈수 있는 링크 생성
     if (now_grp >= 2){ 
-      str.append("<span class='span_box_1'><A href='"+list_file+"?&word="+word+"&now_page="+_now_page+"'>이전</A></span>"); 
+      str.append("<span class='span_box_1'><A href='"+list_file+"?&word="+word+"&word1="+word1+"&word2="+word2+"&now_page="+_now_page+"'>이전</A></span>"); 
     } 
  
     // 중앙의 페이지 목록
@@ -103,14 +103,14 @@ public class ImoneyProc  implements ImoneyProcInter{
         str.append("<span class='span_box_2'>"+i+"</span>"); // 현재 페이지, 강조 
       }else{
         // 현재 페이지가 아닌 페이지는 이동이 가능하도록 링크를 설정
-        str.append("<span class='span_box_1'><A href='"+list_file+"?word="+word+"&now_page="+i+"'>"+i+"</A></span>");   
+        str.append("<span class='span_box_1'><A href='"+list_file+"?word="+word+"&word1="+word1+"&word2="+word2+"&now_page="+i+"'>"+i+"</A></span>");   
       } 
     } 
  
     // 5개 다음 페이지로 이동
     _now_page = (now_grp * Imoney.PAGE_PER_BLOCK)+1;  
     if (now_grp < total_grp){ 
-      str.append("<span class='span_box_1'><A href='"+list_file+"?&word="+word+"&now_page="+_now_page+"'>다음</A></span>"); 
+      str.append("<span class='span_box_1'><A href='"+list_file+"?&word="+word+"&word1="+word1+"&word2="+word2+"&now_page="+_now_page+"'>다음</A></span>"); 
     } 
     str.append("</DIV>"); 
      

@@ -52,7 +52,9 @@ public class DepositCont {
   @RequestMapping(value = "/deposit/deposit_list_search_paging.do", method = RequestMethod.GET)
   public ModelAndView deposit_list_search_paging(
       @RequestParam(value = "word", defaultValue = "") String word,
-      @RequestParam(value = "now_page", defaultValue = "1") int now_page) { // ★ HttpServletRequest request {
+      @RequestParam(value = "word1", defaultValue = "") String word1,
+      @RequestParam(value = "word2", defaultValue = "") String word2,
+      @RequestParam(value = "now_page", defaultValue = "1") int now_page){ // ★ HttpServletRequest request {
     
     System.out.println("-> deposit_list_search_paging now_page: " + now_page);
     
@@ -60,6 +62,8 @@ public class DepositCont {
     
     HashMap<String, Object> map = new HashMap<String, Object>();
     map.put("word", word);
+    map.put("word1", word1);
+    map.put("word2", word2);
     map.put("now_page", now_page);
     
     // 검색 목록
@@ -71,7 +75,7 @@ public class DepositCont {
     int search_count = depositProc.search_count(map);
     mav.addObject("search_count", search_count);
     
-    String paging = depositProc.pagingBox("deposit_list_search_paging.do", search_count, now_page, word);
+    String paging = depositProc.pagingBox("deposit_list_search_paging.do", search_count, now_page, word, word1, word2);
     mav.addObject("paging", paging);
     
     mav.addObject("now_page", now_page);

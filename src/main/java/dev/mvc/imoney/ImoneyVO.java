@@ -18,6 +18,13 @@ COMMENT ON COLUMN deposit_exam.mtrt_int is '만기 후 이자율';
 */
 
 public class ImoneyVO {
+  /** 금융회사명 from site*/
+   private String banknm;
+   /** 지역명 from site*/
+   private String area;
+   
+  
+  
    /** 예금 상품 번호*/
    private int imoneyno;
    /** 금융회사명 */
@@ -29,6 +36,20 @@ public class ImoneyVO {
    /** 만기 후 이자율 */
    private String mtrt_int;
    
+   
+
+  public String getBanknm() {
+    return banknm;
+  }
+  public void setBanknm(String banknm) {
+    this.banknm = banknm;
+  }
+  public String getArea() {
+    return area;
+  }
+  public void setArea(String area) {
+    this.area = area;
+  }
   public int getImoneyno() {
     return imoneyno;
   }
