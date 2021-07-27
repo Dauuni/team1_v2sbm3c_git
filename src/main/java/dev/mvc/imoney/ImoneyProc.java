@@ -19,7 +19,7 @@ public class ImoneyProc  implements ImoneyProcInter{
     
     return count;
   }
-
+  
   @Override
   public List<ImoneyVO> imoney_list_search_paging(HashMap<String, Object> map) {
     // 페이지에서 출력할 시작 레코드 번호 계산 , nowPage는 1부터 시작
@@ -40,6 +40,9 @@ public class ImoneyProc  implements ImoneyProcInter{
        String mtrt_int = Tool.convertChar(imoneyVO.getMtrt_int()); 
        imoneyVO.setMtrt_int(mtrt_int);
        // System.out.println(imoneyVO.getMtrt_int());
+       
+       mtrt_int = Tool.convertChar(mtrt_int);
+       imoneyVO.setMtrt_int(mtrt_int);
      }
     
     return list;
@@ -96,7 +99,7 @@ public class ImoneyProc  implements ImoneyProcInter{
     for(int i=start_page; i<=end_page; i++){ 
       if (i > total_page){ // 마지막 페이지를 넘어갔다면 페이 출력 종료
         break; 
-      } 
+      }
       
       // 목록에 출력하는 페이지가 현재페이지와 같다면 CSS 강조(차별을 둠)
       if (now_page == i){ 
