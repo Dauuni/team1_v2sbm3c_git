@@ -10,18 +10,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     SELECT COUNT(*) as cnt
     FROM imoney_data
     <choose>
-      <when test="word == null or word == '' ">
+      <when test="word == null or word == ''">
       </when>
       <otherwise>
         WHERE  kor_co_nm LIKE '%' || #{word} || '%'
-                    OR fin_prdt_nm LIKE '%' || #{word} || '%'
-                    OR join_way LIKE '%' || #{word} || '%'
-
-                   <!--OR area_nm LIKE '%' || #{word} || '%' -->
-                    
+                   OR fin_prdt_nm LIKE '%' || #{word} || '%'
+                   OR join_way LIKE '%' || #{word} || '%'
+                   <!--OR area_nm LIKE '%' || #{word} || '%' -->               
       </otherwise>
     </choose>
+   <choose>
+      <when test="word1 == null or word1 == ''">
+      </when>
+      <otherwise>
+        WHERE  kor_co_nm LIKE '%' || #{word1} || '%'
+                   OR fin_prdt_nm LIKE '%' || #{word1} || '%'
+                   OR join_way LIKE '%' || #{word1} || '%'
+                   <!--OR area_nm LIKE '%' || #{word} || '%' -->               
+      </otherwise>
+    </choose>    
   </select>
+<!--   <select id="search_count2" resultType="int" parameterType="HashMap">
+    SELECT COUNT(area_nm) as cnt2
+    FROM site
+    <choose>
+      <when test="word2 == null or word2 == ''">
+      </when>
+      <otherwise>
+        WHERE  kor_co_nm LIKE '%' || #{word2} || '%'
+                   OR area_nm LIKE '%' || #{word2} || '%'             
+      </otherwise>
+    </choose>
+  </select>   -->
+  
   
    <!-- 검색 목록 + 페이징 -->
   <select id="imoney_list_search_paging" resultType="dev.mvc.imoney.ImoneyVO" parameterType="HashMap">
@@ -83,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 수정 -->
   <update id="update" parameterType="dev.mvc.imoney.ImoneyVO">
     UPDATE imoney_data
-    SET kor_co_nm=#{kor_co_nm}, fin_prdt_nm=#{fin_prdt_nm}, join_way=#{join_way}, mtrt_int=#{mtrt_int}
+    SET kor_co_nm=#{kor_co_nm}, fin_prdt_nm=#{fin_prdt_nm}, join_way=#{join_way}
     WHERE imoneyno=#{imoneyno}
   </update>
   

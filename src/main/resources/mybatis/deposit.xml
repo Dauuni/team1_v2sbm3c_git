@@ -20,7 +20,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                     
       </otherwise>
     </choose>
+   <choose>
+      <when test="word1 == null or word1 == ''">
+      </when>
+      <otherwise>
+        WHERE  kor_co_nm LIKE '%' || #{word1} || '%'
+                   OR fin_prdt_nm LIKE '%' || #{word1} || '%'
+                   OR join_way LIKE '%' || #{word1} || '%'
+                   <!--OR area_nm LIKE '%' || #{word} || '%' -->               
+      </otherwise>
+    </choose>    
   </select>
+<!--   <select id="search_count2" resultType="int" parameterType="HashMap">
+    SELECT COUNT(area_nm) as cnt2
+    FROM site
+    <choose>
+      <when test="word2 == null or word2 == ''">
+      </when>
+      <otherwise>
+        WHERE  kor_co_nm LIKE '%' || #{word2} || '%'
+                   OR area_nm LIKE '%' || #{word2} || '%'             
+      </otherwise>
+    </choose>
+  </select>   -->
+  
+  
   
    <!-- 검색 목록 + 페이징 -->
   <select id="deposit_list_search_paging" resultType="dev.mvc.deposit.DepositVO" parameterType="HashMap">
