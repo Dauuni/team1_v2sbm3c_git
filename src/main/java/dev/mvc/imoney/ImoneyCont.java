@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import dev.mvc.connsite.ConnsiteVO;
-import dev.mvc.tool.Tool;
-
 
 
 @Controller
@@ -52,8 +49,7 @@ public class ImoneyCont {
       @RequestParam(value = "word", defaultValue = "") String word,
       @RequestParam(value = "word1", defaultValue = "") String word1,
       @RequestParam(value = "word2", defaultValue = "") String word2,
-      @RequestParam(value = "now_page", defaultValue = "1") int now_page, 
-      HttpServletRequest request) { // ★ HttpServletRequest request {
+      @RequestParam(value = "now_page", defaultValue = "1") int now_page) { // ★ HttpServletRequest request {
     
     System.out.println("-> imoney_list_search_paging now_page: " + now_page);
     
@@ -72,7 +68,6 @@ public class ImoneyCont {
     
     // 검색된 레코드 갯수
     int search_count = imoneyProc.search_count(map);
-
     mav.addObject("search_count", search_count);
     
     String paging = imoneyProc.pagingBox("imoney_list_search_paging.do", search_count, now_page, word, word1, word2);
@@ -114,13 +109,10 @@ public class ImoneyCont {
     ModelAndView mav = new ModelAndView();
     
     int cnt = this.imoneyProc.update(imoneyVO);
-    mav.addObject("cnt", cnt);
     
-    if (cnt == 1) {
-      mav.setViewName("redirect:/imoney/imoney_list_search_paging.do");   
-    } else {
-      mav.setViewName("/imoney/update_msg"); // /WEB-INF/views/categrp/update_msg.jsp
-    }
+    mav.addObject("imoneyno", imoneyVO.getImoneyno());
+    
+    mav.setViewName("redirect:/imoney/imoney_list_search_paging.do");
     
     return mav;
     
@@ -153,15 +145,15 @@ public class ImoneyCont {
   public ModelAndView delete(HttpServletRequest request, int imoneyno) {
     ModelAndView mav = new ModelAndView();
     
-    ImoneyVO imoneyVO = this.imoneyProc.read(imoneyno); // 삭제 정보
-    mav.addObject("imoneyVO", imoneyVO);  // request 객체에 저장
+    int cnt = this.imoneyProc.delete(imoneyno);
     
-    int cnt = this.imoneyProc.delete(imoneyno); // 삭제 처리
-    mav.addObject("cnt", cnt);  // request 객체에 저장
+    // ★★★ 페이징 삭제 처리 ★★★
     
-    mav.setViewName("/imoney/delete_msg"); // delete_msg.jsp
-
+    // mav.addObject("now_page", now_page);
+    
+    mav.setViewName("redirect:/imoney/imoney_list_search_paging.do.do");
     
     return mav;
+    
   }
 }

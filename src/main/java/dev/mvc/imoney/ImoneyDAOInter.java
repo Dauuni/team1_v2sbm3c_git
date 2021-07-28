@@ -13,8 +13,6 @@ public interface ImoneyDAOInter {
    */
   public int search_count(HashMap<String, Object> hashMap);
   
-
-  
   /**
    * 검색 + 페이징 목록
    * @param hashmap
