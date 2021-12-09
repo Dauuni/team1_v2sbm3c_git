@@ -39,7 +39,8 @@ KM Bank 사이트는 이 점을 고려하여 사용자가 궁금한 두 은행�
 
 - **Spring Boot**
 
-	<img src="https://user-images.githubusercontent.com/64301855/145398589-fb3234c0-a350-4111-acd3-61e3ee49a812.jpg" width="80" height="60"> 스프링 개발과 관련된 기능들을 개발자가 사용하기 편리하도록 지원하는 **STS(Spring Tool Suite)** 4.6 버전을 사용하여 개발하였다.
+	<img src="https://user-images.githubusercontent.com/64301855/145398589-fb3234c0-a350-4111-acd3-61e3ee49a812.jpg" width="80" height="60"> 
+	스프링 개발과 관련된 기능들을 개발자가 사용하기 편리하도록 지원하는 **STS(Spring Tool Suite)** 4.6 버전을 사용하여 개발하였다.
 
 - **MyBATIS**
 
