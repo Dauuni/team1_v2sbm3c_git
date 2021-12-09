@@ -99,7 +99,7 @@ KM Bank 사이트는 이 점을 고려하여 사용자가 궁금한 두 은행�
 
 ## Web site
 
-- **main**
+- **main**<br>
  ![39](https://user-images.githubusercontent.com/64301855/145399102-41d27796-e8f1-40f6-8f52-c6abe0c15076.jpg)
 <br>
 > 웹 사이트에 접속하자마자 나오는 메인 화면이다.<br>
@@ -107,10 +107,8 @@ KM Bank 사이트는 이 점을 고려하여 사용자가 궁금한 두 은행�
 
 <br>
 
-- **로그인**
-
-<br>
-![47](https://user-images.githubusercontent.com/64301855/145399147-487d9540-7608-45ee-9fe1-c79149188f7e.JPG)
+- **로그인**<br>
+ ![47](https://user-images.githubusercontent.com/64301855/145399147-487d9540-7608-45ee-9fe1-c79149188f7e.JPG)
 > 신규 사용자가 회원가입 버튼을 눌렀을 때 배너 아래에 나오는 화면이다.<br>
 \* 표시가 되어 있는 부분은 필수로 입력하도록 하였고, 우편번호는 Daum API를 사용하여 편리하게 검색할 수 있도록 하였다.
 
@@ -122,64 +120,50 @@ KM Bank 사이트는 이 점을 고려하여 사용자가 궁금한 두 은행�
 
 <br>
 
-- **예금**
-
-<br>
-![40](https://user-images.githubusercontent.com/64301855/145399239-a0e7abd0-5f55-47bd-b807-97f4f5f9bfd6.jpg)
+- **예금**<br>
+ ![40](https://user-images.githubusercontent.com/64301855/145399239-a0e7abd0-5f55-47bd-b807-97f4f5f9bfd6.jpg)
 > 배너에 있는 예금 버튼을 눌렀을 때 나오는 화면이다.<br>
 상단에 가입 방법, 지역, 검색어에 따라 분류할 수 있는 검색 기능을 추가하였다.
 
 <br>
 
-- **적금**
-
-<br>
-![41](https://user-images.githubusercontent.com/64301855/145399287-a02ccc1c-78ec-4dca-83b5-8f160f8033b1.jpg)
+- **적금**<br>
+ ![41](https://user-images.githubusercontent.com/64301855/145399287-a02ccc1c-78ec-4dca-83b5-8f160f8033b1.jpg)
 > 배너에 있는 적금 버튼을 눌렀을 때 나오는 화면이다.<br>
 예금 화면과 마찬가지로 상단에 가입 방법, 지역, 검색어에 따라 분류할 수 있는 검색 기능을 추가하였다.
 
 <br>
 
-- **테이블**
-
-<br>
-![42](https://user-images.githubusercontent.com/64301855/145399275-3a37127a-9f05-45de-abb1-f8c05dbda86e.jpg)
+- **테이블**<br>
+ ![42](https://user-images.githubusercontent.com/64301855/145399275-3a37127a-9f05-45de-abb1-f8c05dbda86e.jpg)
 > 예금, 적금 화면에서 검색 기능 아래 데이터 테이블이 출력 되게 하였다.<br>
 아래 페이징 기능을 추가하였고, 은행 이름 왼쪽의 체크 박스를 선택하고 비교하기 버튼을 누를 수 있도록 하였다.
 
 <br>
 
-- **비교**
-
-<br>
-![43](https://user-images.githubusercontent.com/64301855/145399281-967848ce-5f29-4f8f-8abc-830ffd6021d8.jpg)
+- **비교**<br>
+ ![43](https://user-images.githubusercontent.com/64301855/145399281-967848ce-5f29-4f8f-8abc-830ffd6021d8.jpg)
 > 사용자가 체크 박스를 선택하고 버튼을 눌렀을 때 나오는 화면이다.<br>
 테이블로 보았을 때보다 한눈에 보기 편하다.
 
 <br>
 
-- **API 수집**
-
-<br>
-![44](https://user-images.githubusercontent.com/64301855/145399361-89683d7b-55fd-4c75-8bbd-2d9d6aef5a26.jpg)
+- **API 수집**<br>
+ ![44](https://user-images.githubusercontent.com/64301855/145399361-89683d7b-55fd-4c75-8bbd-2d9d6aef5a26.jpg)
 > 현재 관리자 권한으로 로그인한 상태여서 오른쪽 상단에 관리자 버튼이 활성화 되어 있는 상태이다. 여기서, 관리자 버튼의 하위 메뉴에서 데이터 수집 버튼을 누르면 나오는 화면이다.<br>
 수집 버튼을 누르면 **금융감독원 사이트**에서 제공하는 open api의 데이터를 받아오게 된다.
 
 <br>
 
-- **커뮤니티**
-
-<br>
-![45](https://user-images.githubusercontent.com/64301855/145399366-61f46919-1357-4478-8d0b-7c86a2d2936a.JPG)
+- **커뮤니티**<br>
+ ![45](https://user-images.githubusercontent.com/64301855/145399366-61f46919-1357-4478-8d0b-7c86a2d2936a.JPG)
 > 배너에 있는 커뮤니티 버튼을 눌렀을 때 나오는 화면이다.<br>
 사용자 간의 소통할 수 있고, 마음에 드는 게시물에 좋아요 표시를 할 수 있도록 하였다.
 
 <br>
 
-- **은행**
-
-<br>
-![48](https://user-images.githubusercontent.com/64301855/145399403-06484dac-0a36-45a0-b36e-8d6b412e4de7.JPG)
+- **은행**<br>
+ ![48](https://user-images.githubusercontent.com/64301855/145399403-06484dac-0a36-45a0-b36e-8d6b412e4de7.JPG)
 > 배너에 있는 은행 버튼을 눌렀을 때 나오는 화면이다.<br>
 전체 은행의 사이트를 모아두었고, 사용자가 궁금한 은행을 검색할 수 있다. 이미지나 사이트 주소를 눌렀을 경우 해당 사이트로 넘어가도록 하였다.
 
