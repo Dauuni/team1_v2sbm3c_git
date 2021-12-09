@@ -51,9 +51,8 @@ KM Bank 사이트는 이 점을 고려하여 사용자가 궁금한 두 은행�
 
 	- **Oracle 11G**를 사용하여 데이터를 관리하였다.
 
-	- **SQL Developer** 19.2.1버전을 사용하여 Oracle 11G에서 생성한 계정으로 접속하여 테이블과 데이터를 관리하였다.
-    <br>
-    ![35](https://user-images.githubusercontent.com/64301855/145398591-43a711e1-a470-4702-bbaa-9e10b32494ae.JPG)
+	- **SQL Developer** 19.2.1버전을 사용하여 Oracle 11G에서 생성한 계정으로 접속하여 테이블과 데이터를 관리하였다.<br>
+	 ![35](https://user-images.githubusercontent.com/64301855/145398591-43a711e1-a470-4702-bbaa-9e10b32494ae.JPG)
 
 - **UI Style**
 
