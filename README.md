@@ -52,7 +52,7 @@ KM Bank 사이트는 이 점을 고려하여 사용자가 궁금한 두 은행�
 	- **Oracle 11G**를 사용하여 데이터를 관리하였다.
 
 	- **SQL Developer** 19.2.1버전을 사용하여 Oracle 11G에서 생성한 계정으로 접속하여 테이블과 데이터를 관리하였다.
-	 <br>![35](https://user-images.githubusercontent.com/64301855/145398591-43a711e1-a470-4702-bbaa-9e10b32494ae.JPG)
+	 ![35](https://user-images.githubusercontent.com/64301855/145398591-43a711e1-a470-4702-bbaa-9e10b32494ae.JPG)
 
 - **UI Style**
 
@@ -99,7 +99,8 @@ KM Bank 사이트는 이 점을 고려하여 사용자가 궁금한 두 은행�
 
 ## Web site
 
-- **main**<br>
+- **main**
+ 
  ![39](https://user-images.githubusercontent.com/64301855/145399102-41d27796-e8f1-40f6-8f52-c6abe0c15076.jpg)
 > 웹 사이트에 접속하자마자 나오는 메인 화면이다.<br>
 아래 메인 컨텐츠 부분은 메인 화면에서 많이 사용 되는 이미지 슬라이드를 추가하였다.
